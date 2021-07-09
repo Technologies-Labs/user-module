@@ -1,4 +1,4 @@
-@extends('layouts.simple.master')
+{{-- @extends('layouts.simple.master')
 @section('title', 'Basic DataTables')
 
 @section('css')
@@ -99,4 +99,5 @@
 @section('script')
 <script src="{{asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('assets/js/datatable/datatables/datatable.custom.js')}}"></script>
-@endsection
+@endsection --}}
+@widget('datatable')
