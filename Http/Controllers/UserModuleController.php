@@ -24,8 +24,17 @@ class UserModuleController extends Controller
      */
     public function index()
     {
-        $users = User::select()->orderBy('id',UserEnum::DESPLAY_ORDER)->with(['roles'])->get();
-        return view('usermodule::dashboard.index',compact('users'));
+        $users      = User::select()->orderBy('id', UserEnum::DESPLAY_ORDER)->with(['roles'])->get();
+        $table      = 'users';
+        $columns    = ['name', 'email', 'phone'];
+        $actions    = ['create','edit','activate','delete' ];
+
+        return view('usermodule::dashboard.index',[
+            'data'          => $users,
+            'table'         => $table,
+            'columns'       => $columns,
+            'actions'       => $actions,
+        ]);
     }
 
     public function getUsersByRole($role)
