@@ -1,12 +1,12 @@
 <?php
 namespace Modules\UserModule\Services;
 
-use Modules\UserModule\Entities\Company_customer_say as Ccsay;
+use Modules\UserModule\Entities\CompanyCustomerSay;
 use App\Traits\UploadTrait;
 
 use function PHPUnit\Framework\isNull;
 
-class CompanycustomersayService{
+class CompanyCustomerSayService{
 
     use UploadTrait;
 
@@ -14,9 +14,9 @@ class CompanycustomersayService{
     public $customerSay;
     public $customerImage;
 
-    public function createCcsay(){
+    public function createCompanyCustomerSay(){
 
-            return Ccsay::create(
+            return CompanyCustomerSay::create(
             [
                 'customer_name'        =>$this->customerName,
                 'customer_say'         =>$this->customerSay,
@@ -26,16 +26,16 @@ class CompanycustomersayService{
             );
     }
 
-    public function updateCcsay(Ccsay $ccsay)
+    public function updateCompanyCustomerSay(CompanyCustomerSay $CompanyCustomerSay)
     {
-         $ccsay->update(
+         $CompanyCustomerSay->update(
             [
                 'customer_name'        =>$this->customerName,
                 'customer_say'         =>$this->customerSay,
-                'customer_image'       =>($this->customerImage??$ccsay->customer_image),
+                'customer_image'       =>($this->customerImage??$CompanyCustomerSay->customer_image),
             ]
         );
-        return Ccsay::find($ccsay->id);
+        return CompanyCustomerSay::find($CompanyCustomerSay->id);
 
     }
      /**
@@ -75,8 +75,7 @@ class CompanycustomersayService{
         if(isNull($old_image)){
             $this->customerImage =$this->storeImage($customerImage,'assets/images/company_customers_say');
         }else
-        $this->customerImage =$this->updateImage($customerImage,'assets/images/company_customers_say',$old_image);
-
+            $this->customerImage =$this->updateImage($customerImage,'assets/images/company_customers_say',$old_image);
     }
 
 }

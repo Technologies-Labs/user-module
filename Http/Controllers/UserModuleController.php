@@ -10,12 +10,10 @@ use Illuminate\Support\Facades\DB;
 use Modules\UserModule\Entities\Company;
 use Modules\UserModule\Entities\Customer;
 use Modules\UserModule\Entities\Indevidual;
-use Modules\UserModule\Entities\Company_customer_say as Ccsay;
 use Modules\UserModule\Enum\UserEnum;
 use Spatie\Permission\Models\Role;
 use Modules\UserModule\Http\Requests\UserRequest;
 use Modules\UserModule\Services\UserService;
-use Modules\UserModule\Services\CompanycustomersayService as CcsayService;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class UserModuleController extends Controller
@@ -182,78 +180,5 @@ class UserModuleController extends Controller
         }
         $user->is_active = !$user->is_active;
         $user->save();
-    }
-
-/*
-* START COMPANY_customer_say
-**/
-
-/**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
-    public function storeCcsay(Request $request)
-    {
-        $request->validate($request, [
-            'customer_name'     => 'required',
-            'customer_say'      => 'required',
-            'customer_image'    => 'required',
-        ]);
-
-        $newCcsay =new CcsayService();
-        $newCcsay->setCustomerName($request->name)
-                 ->setCustomerSay($request->say)
-                 ->setCustomerImage($request->image);
-
-        $newCcsay->createCcsay();
-
-        return redirect()->route('')->with('success','Customer_say created successfully');
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function updateCcsay(Request $request, $id)
-    {
-        $request->validate($request, [
-            'customer_name'     => 'required',
-            'customer_say'      => 'required',
-            'customer_image'    => 'required',
-        ]);
-
-       $ccsay = Ccsay::find($id);
-        if(!$ccsay){
-            return redirect()->route('')->with('failed',"Customer_say Not Found");
-        }
-
-        $updateCcsay =new CcsayService();
-        $updateCcsay ->setCustomerName($request->name)
-                     ->setCustomerSay($request->say)
-                     ->updateCustomerImg($request->image ,$ccsay->customer_image);
-
-
-        $updateCcsay->updateCcsay($ccsay);
-
-        return redirect()->route('')->with('success','Customer_say updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroyCcsay($id)
-    {
-        $ccsay=Ccsay::find($id);
-        if (!$ccsay) {
-            return redirect()->route('')->with('failed',"Customer_say Not Found");
-        }
-        $ccsay->delete();
-        return 'Customer_say deleted ';
     }
 }
