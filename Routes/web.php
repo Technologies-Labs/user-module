@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
+use \Modules\UserModule\Http\Controllers\UpgradeController;
 /**
  * Admin Route
 */
@@ -31,6 +32,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('followers')->group(function() {
         //Route::get('add/{name}', [AddFollowAction::class , 'handle'])->name('user.add.follower');
+    });
+
+    Route::prefix('upgrade')->group(function() {
+        Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
 });
 
