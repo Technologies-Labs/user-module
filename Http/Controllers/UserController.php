@@ -3,6 +3,7 @@
 namespace Modules\UserModule\Http\Controllers;
 
 use App\Models\User;
+use Auth;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,9 +16,17 @@ use Spatie\Permission\Models\Role;
 use Modules\UserModule\Http\Requests\UserRequest;
 use Modules\UserModule\Services\UserService;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Modules\UserModule\Repositories\UserRepository;
 
-class UserModuleController extends Controller
+class UserController extends Controller
 {
+    private $userRepository;
+
+    public function __construct()
+    {
+         $this->userRepository  = new UserRepository();
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
@@ -180,5 +189,16 @@ class UserModuleController extends Controller
         }
         $user->is_active = !$user->is_active;
         $user->save();
+    }
+
+    public function getUserSocialMediaAccounts($name)
+    {
+        $user = User::where('name' , $name)->first();
+        if (!$user || Auth::user()->name !=$name ){
+            abort(404);
+        }
+
+        $accounts = $this->userRepository->getUserSocialMediaAccounts($user);
+        return view('usermodule::website.account-settings',compact('accounts'));
     }
 }
