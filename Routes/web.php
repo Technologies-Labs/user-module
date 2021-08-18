@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
 use Modules\UserModule\Http\Controllers\UserController;
 use Modules\UserModule\Http\Livewire\UserSocialMediaAccounts;
+use \Modules\UserModule\Http\Controllers\UpgradeController;
 
 /**
  * Admin Route
@@ -35,8 +36,13 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('followers')->group(function() {
         //Route::get('add/{name}', [AddFollowAction::class , 'handle'])->name('user.add.follower');
     });
+
     Route::prefix('account-settings')->group(function() {
         Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
+    });
+  
+    Route::prefix('upgrade')->group(function() {
+        Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
 });
 
