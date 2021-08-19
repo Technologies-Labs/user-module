@@ -18,14 +18,19 @@ use Modules\UserModule\Http\Livewire\UserSocialMediaAccounts;
 use \Modules\UserModule\Http\Controllers\UpgradeController;
 
 /**
- * Admin Route
+ * Dashboard Route
 */
 Route::middleware(['auth'])->group(function () {
     Route::resource('users', 'UserController');
+
     Route::prefix('users')->group(function() {
         Route::get('get/{role}','UserController@getUsersByRole')->name('users.role');
         Route::get('/activation/{id}','UserController@activate');
         Route::get('/delete/{id}','UserController@destroy');
+    });
+
+    Route::prefix('upgrades')->group(function() {
+        Route::get('/', [UpgradeController::class , 'index'])->name('users.upgrades');
     });
 });
 
@@ -40,7 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('account-settings')->group(function() {
         Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
     });
-  
+
     Route::prefix('upgrade')->group(function() {
         Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
