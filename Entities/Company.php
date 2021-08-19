@@ -22,6 +22,10 @@ class Company extends Model
       {
           return $this->hasMany(Indevidual::class,'id');
       }
+      public function companyServices()
+      {
+          return $this->hasMany(CompanyService::class);
+      }
     // protected static function newFactory()
     // {
     //     return \Modules\UserModule\Database\factories\CompanyFactory::new();
