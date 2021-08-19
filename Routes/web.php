@@ -27,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/activation/{id}','UserController@activate');
         Route::get('/delete/{id}','UserController@destroy');
     });
+    Route::get('notifications-templates', function(){
+        return view('usermodule::dashboard.notificationsTemplate.index');
+    })->name('notifications.templates');
 });
 
 /**
@@ -40,9 +43,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('account-settings')->group(function() {
         Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
     });
-  
+
     Route::prefix('upgrade')->group(function() {
         Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
 });
-
