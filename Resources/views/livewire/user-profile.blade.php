@@ -7,6 +7,7 @@
             <div class="add-btn">
                 @if(!$isCurrantUser)
                     @include('usermodule::components.user_profile.actions')
+                    <livewire:usermodule::suggestion.user-suggestion :user="$user" />
                 @endif
             </div>
             @if($isCurrantUser)
