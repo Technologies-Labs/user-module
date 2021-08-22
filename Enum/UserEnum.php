@@ -11,4 +11,5 @@ class UserEnum
     const DESPLAY_ORDER       ='DESC';
     const NOTIFICATIONS       = 'notifications';
     const FINANCIAL           = 'financial';
+    const COMPANY_VIDEO_PATH  = 'assets/videos/companies';
 }
