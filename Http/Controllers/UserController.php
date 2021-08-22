@@ -17,6 +17,7 @@ use Modules\UserModule\Http\Requests\UserRequest;
 use Modules\UserModule\Services\UserService;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Modules\UserModule\Repositories\UserRepository;
+use Modules\WalletModule\Entities\Wallet;
 
 class UserController extends Controller
 {
@@ -89,6 +90,10 @@ class UserController extends Controller
         if($user->hasRole('customer'))
             Customer::create(['id'=>$user->id]);
 
+        //create wallet to the user
+        $wallet = new Wallet();
+        $wallet->id = $user->id;
+        $wallet->save();
 
         return redirect()->route('users.index')->with('success','User created successfully');
 
