@@ -8,9 +8,9 @@ use Modules\UserModule\Entities\SocialMediaAccount;
 
 class UserRepository {
 
-/**
-     * Get User Notifications
-*/
+    /**
+         * Get User Notifications
+    */
     public function getUserNotifications($type) {
 
         if($type == "notifications") {
@@ -21,9 +21,9 @@ class UserRepository {
         }
     }
 
-/**
-* Get User socialMediaAccounts
-*/
+    /**
+    * Get User socialMediaAccounts
+    */
     public function getUserSocialMediaAccounts(User $user)
     {
         return SocialMediaAccount::firstOrCreate(['user_id' =>$user->id]);

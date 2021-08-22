@@ -3,14 +3,11 @@
 namespace Modules\UserModule\Entities;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Complaint extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    protected $guarded = [];
 
     public function user()
     {

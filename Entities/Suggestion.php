@@ -4,15 +4,17 @@ namespace Modules\UserModule\Entities;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Upgrade extends Model
+class Suggestion extends Model
 {
-    use HasFactory;
-
     protected $guarded = [];
 
-    public function upgrade()
+    public function user()
+    {
+        return $this->belongsTo(User::class,'suggest_id');
+    }
+
+    public function userSuggestion()
     {
         return $this->belongsTo(User::class,'user_id');
     }

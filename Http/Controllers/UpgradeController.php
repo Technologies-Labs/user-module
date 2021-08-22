@@ -11,14 +11,21 @@ use Modules\UserModule\Services\UpgradeService;
 
 class UpgradeController extends Controller
 {
+    public function index()
+    {
+        $table      = 'upgrade';
+        return view('usermodule::dashboard.upgrades.index',[
+            'table'         => $table,
+        ]);
+    }
     public function upgrade(Request $request)
     {
-        $user = Auth::user();
-        $upgradeService = (new UpgradeService())
+        $user               = Auth::user();
+        $upgradeService     = (new UpgradeService())
             ->setCurrentPackage($user->roles->first()->name)
             ->setNextPackage($request['package'])
             ->setUser($user);
-        $upgrade = $upgradeService->createUpgrade()->getData();
+        $upgrade            = $upgradeService->createUpgrade()->getData();
 
         return redirect()->back()->with($upgrade->success,$upgrade->message);
     }

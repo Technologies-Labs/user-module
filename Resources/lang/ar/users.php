@@ -8,7 +8,7 @@ return[
         'roles'     => 'Roles'
     ],
     'suggestion'=>[
-        'all-suggestions' => 'All Suggestions',
-        'suggestion'      => 'Suggestion'
+        'all-suggestions' => 'كُل الاقتراحات',
+        'suggestion'      => 'اقتراحات'
     ]
 ];
