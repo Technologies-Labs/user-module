@@ -12,4 +12,5 @@ class UserEnum
     const NOTIFICATIONS       = 'notifications';
     const FINANCIAL           = 'financial';
     const COMPANY_VIDEO_PATH  = 'assets/videos/companies';
+
 }
