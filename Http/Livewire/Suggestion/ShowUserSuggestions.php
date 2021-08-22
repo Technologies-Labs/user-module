@@ -11,7 +11,7 @@ class ShowUserSuggestions extends Component
     private $suggestionRepository;
     public $suggestions;
 
-    function mount()
+    function __construct()
     {
         $this->suggestionRepository = new SuggestionRepository();
     }
@@ -21,5 +21,11 @@ class ShowUserSuggestions extends Component
         $this->suggestions = $this->suggestionRepository->getAllSuggestion($this->user);
 
         return view('usermodule::livewire.suggestion.show-user-suggestions');
+    }
+
+    public function deleteSuggestion($id)
+    {
+        $this->suggestions->find($id)->delete();
+        session()->flash('message', 'suggestion deleted successfully');
     }
 }
