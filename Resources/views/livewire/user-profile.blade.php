@@ -29,6 +29,9 @@
                                     <a class="" href="timeline-groups.html" title="" data-ripple="">Groups</a>
                                     <a class="" href="services.html" title="" data-ripple="">Services</a>
                                     <a class="" href="about.html" title="" data-ripple="">about</a>
+                                    @if($isCurrantUser)
+                                        @include('usermodule::components.suggestion.show-user-suggestions')
+                                    @endif
                                     <a class="" href="#" title="" data-ripple="">more</a>
                                 </li>
                             </ul>
