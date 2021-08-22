@@ -12,7 +12,7 @@
                                 <p>{{$suggestion->details}}</p>
                                 <img src="{{ asset('storage/'.$suggestion->file)}}" alt="">
                             </div>
-                            <i class="del fa fa-close"></i>
+                            <i class="del fa fa-close" wire:click ="deleteSuggestion({{$suggestion->id}})" ></i>
                         </li>
                     @endforeach
                 </ul>
