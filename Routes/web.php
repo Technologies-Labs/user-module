@@ -30,9 +30,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete/{id}','UserController@destroy');
     });
 
+    Route::get('notifications-templates', function(){
+        return view('usermodule::dashboard.notificationsTemplate.index');
+    })->name('notifications.templates');
+
+
     Route::prefix('upgrades')->group(function() {
         Route::get('/', [UpgradeController::class , 'index'])->name('users.upgrades');
     });
+
 });
 
 /**
