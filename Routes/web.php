@@ -14,6 +14,7 @@
 use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
 use Modules\UserModule\Http\Controllers\UserController;
+use Modules\UserModule\Http\Controllers\UserSuggestionController;
 use Modules\UserModule\Http\Livewire\UserSocialMediaAccounts;
 use \Modules\UserModule\Http\Controllers\UpgradeController;
 
@@ -29,9 +30,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/delete/{id}','UserController@destroy');
     });
 
+    Route::get('notifications-templates', function(){
+        return view('usermodule::dashboard.notificationsTemplate.index');
+    })->name('notifications.templates');
+
+
     Route::prefix('upgrades')->group(function() {
         Route::get('/', [UpgradeController::class , 'index'])->name('users.upgrades');
     });
+
 });
 
 /**
@@ -49,5 +56,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('upgrade')->group(function() {
         Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
-});
 
+    Route::prefix('suggestions')->group(function() {
+        Route::get('/', [UserSuggestionController::class , 'index'])->name('user.suggestions');
+
+    });
+});
