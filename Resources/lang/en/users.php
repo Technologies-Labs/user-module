@@ -17,4 +17,10 @@ return[
         'send-suggestion'       => 'Send Suggestion',
         'write-your-suggestion' => 'Write your suggestion'
     ],
+    'complaint'=>[
+        'add-complaint'        => 'Add Complaint',
+        'send-complaint'       => 'Send Complaint',
+        'write-your-complaint' => 'Write your complaint'
+
+    ]
     ];
