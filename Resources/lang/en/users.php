@@ -7,8 +7,14 @@ return[
         'phone'     => 'Phone Number',
         'roles'     => 'Roles'
     ],
+    'general'=>[
+        'send'   => 'Send',
+        'cancel' => 'Cancel',
+    ],
     'suggestion'=>[
-        'all-suggestions' => 'All Suggestions',
-        'suggestion'      => 'Suggestion'
-    ]
-];
+        'all-suggestions'       => 'All Suggestions',
+        'add-suggestion'        => 'Add Suggestion',
+        'send-suggestion'       => 'Send Suggestion',
+        'write-your-suggestion' => 'Write your suggestion'
+    ],
+    ];
