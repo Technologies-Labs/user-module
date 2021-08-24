@@ -17,4 +17,10 @@ return[
         'send-suggestion'       => 'إرسال الاقتراح',
         'write-your-suggestion' => 'اكتب اقتراحك'
     ],
+    'complaint'=>[
+        'add-complaint'        => 'إضافة شكوى',
+        'send-complaint'       => 'إرسال الشكوى',
+        'write-your-complaint' => 'اكتب شكواك'
+
+    ]
 ];
