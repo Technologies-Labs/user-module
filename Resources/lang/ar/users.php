@@ -8,8 +8,12 @@ return[
         'roles'     => 'Roles'
     ],
     'general'=>[
-        'send'   => 'إرسال',
-        'cancel' => 'إلغاء',
+        'send'     => 'إرسال',
+        'cancel'   => 'إلغاء',
+        'save'     => 'حفظ',
+        'update'   => 'تعديل',
+        'delete'   => 'حذف',
+        'add-more' => 'إضافة'
     ],
     'suggestion'=>[
         'all-suggestions'       => 'كُل الاقتراحات',
@@ -17,4 +21,10 @@ return[
         'send-suggestion'       => 'إرسال الاقتراح',
         'write-your-suggestion' => 'اكتب اقتراحك'
     ],
+    'company'=>[
+        'company-address'        => 'عنوان الشركة',
+        'country'                => 'البلد',
+        'city'                   => 'المدينه',
+        'street'                 => 'الشارع'
+    ]
 ];
