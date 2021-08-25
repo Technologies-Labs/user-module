@@ -11,6 +11,6 @@ class CompanyAddress extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class,'suggest_id');
+        return $this->belongsTo(User::class);
     }
 }
