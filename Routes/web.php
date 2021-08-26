@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
+use Modules\UserModule\Http\Controllers\UserCompanyController;
 use Modules\UserModule\Http\Controllers\UserController;
 use Modules\UserModule\Http\Controllers\UserSuggestionController;
 use Modules\UserModule\Http\Livewire\UserSocialMediaAccounts;
@@ -59,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('suggestions')->group(function() {
         Route::get('/', [UserSuggestionController::class , 'index'])->name('user.suggestions');
+    });
 
+    Route::prefix('company-statistic')->group(function() {
+        Route::get('/{name}', [UserCompanyController::class , 'getUserCompanyStatistics'])->name('user.company.statistics');
     });
 });

@@ -10,6 +10,8 @@ return[
     'general'=>[
         'send'   => 'Send',
         'cancel' => 'Cancel',
+        'save'   => 'Save',
+        'edit'   => 'Edit'
     ],
     'suggestion'=>[
         'all-suggestions'       => 'All Suggestions',
@@ -21,6 +23,14 @@ return[
         'add-complaint'        => 'Add Complaint',
         'send-complaint'       => 'Send Complaint',
         'write-your-complaint' => 'Write your complaint'
+    ],
+    'companyStatistic'=>[
+        'company-statistic' =>'Company Statistic',
+        'create-statistic'  => 'Create Statistic',
+        'edit-statistic'    => 'Edit Statistic',
+        'add-statistic'     => 'Add Statistic',
+        'number'            => 'Number',
+        'name'              => 'Name'
 
     ]
     ];

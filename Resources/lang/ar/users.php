@@ -10,6 +10,8 @@ return[
     'general'=>[
         'send'   => 'إرسال',
         'cancel' => 'إلغاء',
+        'save'   => 'حفظ',
+        'edit'   => 'تعديل'
     ],
     'suggestion'=>[
         'all-suggestions'       => 'كُل الاقتراحات',
@@ -21,6 +23,15 @@ return[
         'add-complaint'        => 'إضافة شكوى',
         'send-complaint'       => 'إرسال الشكوى',
         'write-your-complaint' => 'اكتب شكواك'
+
+    ],
+    'companyStatistic'=>[
+        'company-statistic' =>'احصائيات الشركة',
+        'create-statistic'  => 'إضافة احصائية',
+        'edit-statistic'    => 'تعديل الأحصائية',
+        'add-statistic'     => 'إضافة احصائية',
+        'number'            => 'الرقم',
+        'name'              => 'الاسم'
 
     ]
 ];
