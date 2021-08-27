@@ -1,6 +1,6 @@
 <?php
 
-return[
+return [
     'table'=>[
         'name'      => 'User Name',
         'email'     => 'Email',
@@ -26,5 +26,10 @@ return[
         'country'                => 'Country',
         'city'                   => 'City',
         'street'                 => 'Street'
-    ]
+      ],
+    'complaint'=>[
+        'add-complaint'        => 'Add Complaint',
+        'send-complaint'       => 'Send Complaint',
+        'write-your-complaint' => 'Write your complaint'
+      ]
     ];

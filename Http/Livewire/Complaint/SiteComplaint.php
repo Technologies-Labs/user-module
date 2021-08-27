@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Modules\UserModule\Entities\Complaint;
+use Modules\UserModule\Services\ComplaintService;
 
 class SiteComplaint extends Component
 {
@@ -14,10 +15,13 @@ class SiteComplaint extends Component
     public $currantUser;
     public $details;
     public $file;
+    protected $complaint;
 
-    function mount()
+    function __construct()
     {
         $this->currantUser = Auth::user();
+        $this->complaint   = new ComplaintService();
+
     }
 
     public function render()
@@ -27,18 +31,15 @@ class SiteComplaint extends Component
 
     protected $rules = [
         'details' => 'required',
-        'file'    => 'required'
     ];
 
     public function addComplaint()
     {
-        $this->validate($this->rules);
-        $image = $this->file->store('complaints');
-        Complaint::create([
-            'user_id' => $this->currantUser->id,
-            'details' => $this->details,
-            'file'    => $image
-        ]);
+        $this->complaint ->setUserID  ($this->currantUser->id)
+                         ->setDetails ($this->details)
+                         ->setFile    ($this->file);
+        $this->complaint->createComplaint();
+
         $this->emit('resetFormInputs');
     }
 }
