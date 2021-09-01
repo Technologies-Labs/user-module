@@ -8,6 +8,7 @@
                 @if(!$isCurrantUser)
                     @include('usermodule::components.user_profile.actions')
                     <livewire:usermodule::suggestion.user-suggestion :user="$user" />
+                    <livewire:usermodule::announcement.user-announcement :user="$user"/>
                 @endif
             </div>
             @if($isCurrantUser)
