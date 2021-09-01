@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
 use Modules\UserModule\Http\Controllers\UserCompanyController;
 use Modules\UserModule\Http\Controllers\UserController;
+use Modules\UserModule\Http\Controllers\UserOfferController;
 use Modules\UserModule\Http\Controllers\UserSuggestionController;
 use Modules\UserModule\Http\Livewire\UserSocialMediaAccounts;
 use \Modules\UserModule\Http\Controllers\UpgradeController;
@@ -64,5 +65,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('company-address')->group(function() {
         Route::get('/{name}', [UserCompanyController::class , 'getUserCompanyAddress'])->name('user.company.address');
+    });
+
+    Route::prefix('offer')->group(function() {
+        Route::get('/show', [UserOfferController::class , 'show'])->name('offer.show');
     });
 });

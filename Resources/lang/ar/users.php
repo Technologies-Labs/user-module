@@ -33,5 +33,9 @@ return [
         'add-complaint'        => 'إضافة شكوى',
         'send-complaint'       => 'إرسال الشكوى',
         'write-your-complaint' => 'اكتب شكواك'
+    ],
+    'offer'=>[
+        'start-date' => 'تاريخ البداية',
+        'end-date'   => 'تاريخ النهاية'
     ]
 ];
