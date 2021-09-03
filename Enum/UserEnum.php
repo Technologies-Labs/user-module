@@ -8,6 +8,7 @@ class UserEnum
 {
     const USER_IMAGE_PATH     = 'assets/images/users';
     const USER_DEFAULT_IMAGE  = self::USER_IMAGE_PATH .'/'.'user_default.png';
+    const USER_DEFAULT_LOGO   = 'assets/images/resources/timeline-1.jpg';
     const DESPLAY_ORDER       ='DESC';
     const NOTIFICATIONS       = 'notifications';
     const FINANCIAL           = 'financial';

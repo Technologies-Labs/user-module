@@ -31,5 +31,15 @@ return [
         'add-complaint'        => 'Add Complaint',
         'send-complaint'       => 'Send Complaint',
         'write-your-complaint' => 'Write your complaint'
-      ]
+      ],
+    'user'=>[
+        'edit-basic-information' => 'Edit Basic Information',
+        'name'                   => 'Name',
+        'full-name'              => 'Full Name',
+        'phone-no.'              => 'Phone No.',
+        'edit-password'          => 'Edit Password',
+        'current-password'       => 'Current password',
+        'new-password'           => 'New password',
+        'confirm-password'       => 'Confirm password'
+    ]
     ];

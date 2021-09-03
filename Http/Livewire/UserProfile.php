@@ -5,11 +5,17 @@ namespace Modules\UserModule\Http\Livewire;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Modules\UserModule\Entities\Follower;
+use Modules\UserModule\Services\UserService;
 
 class UserProfile extends Component
 {
+    use WithFileUploads;
+
     public $user;
+    public $logo;
+    public $image;
     public $currantUser;
     public $isCurrantUser;
     public $follower;
@@ -32,9 +38,9 @@ class UserProfile extends Component
             $this->isFollower = false;
         }
 
+        $this->logo = $this->currantUser->logo;
+        $this->image = $this->currantUser->image;
     }
-
-
 
     public function render()
     {
