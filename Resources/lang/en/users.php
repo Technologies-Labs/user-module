@@ -33,6 +33,17 @@ return [
         'write-your-complaint' => 'Write your complaint'
       ],
 
+    'user'=>[
+        'edit-basic-information' => 'Edit Basic Information',
+        'name'                   => 'Name',
+        'full-name'              => 'Full Name',
+        'phone-no.'              => 'Phone No.',
+        'edit-password'          => 'Edit Password',
+        'current-password'       => 'Current password',
+        'new-password'           => 'New password',
+        'confirm-password'       => 'Confirm password'
+
+],
     'announcement'=>[
         'send-announcement'       => 'Send Announcement',
         'write-your-announcement' => 'Write Your Announcement',
@@ -46,6 +57,5 @@ return [
         'description'   => 'Description',
         'upload-photos' => 'Upload Photos',
         'edit-offer'    => 'Edit Offer'
-
     ]
     ];

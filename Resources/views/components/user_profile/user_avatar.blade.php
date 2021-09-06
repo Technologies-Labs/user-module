@@ -1,12 +1,16 @@
 <div class="user-avatar">
     <figure>
-        <img src="{{asset('assets/images/resources/user-avatar.jpg')}}" alt="">
+        <img src="{{asset($image)}}" alt="">
         @if($isCurrantUser)
-            <form class="edit-phto">
+            <form method="POST" action="{{route('edit.image')}}" class="edit-phto">
+                @csrf
                 <i class="fa fa-camera-retro"></i>
                 <label class="fileContainer">
                     Edit Display Photo
-                    <input type="file"/>
+                    <input name="image" type="file"/>
+                </label>
+                <label class="fileContainer">
+                    <input type="submit" placeholder="save"/>
                 </label>
             </form>
         @endif
