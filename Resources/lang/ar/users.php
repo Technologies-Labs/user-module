@@ -58,7 +58,8 @@ return [
         'add-offer'     => 'إضافة عرض',
         'description'   => 'الوصف',
         'upload-photos' => 'تحميل صوره',
-        'edit-offer'    => 'تعديل العرض'
-
+        'edit-offer'    => 'تعديل العرض',
+        'start-date' => 'تاريخ البداية',
+        'end-date'   => 'تاريخ النهاية'
     ]
 ];

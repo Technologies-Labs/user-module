@@ -15,11 +15,8 @@ use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
 use Modules\UserModule\Http\Controllers\UserCompanyController;
 use Modules\UserModule\Http\Controllers\UserController;
-
 use Modules\UserModule\Http\Controllers\UserSettingController;
-
 use Modules\UserModule\Http\Controllers\UserOfferController;
-
 use Modules\UserModule\Http\Controllers\UserSuggestionController;
 use Modules\UserModule\Http\Livewire\UserSocialMediaAccounts;
 use \Modules\UserModule\Http\Controllers\UpgradeController;
@@ -71,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{name}', [UserCompanyController::class , 'getUserCompanyAddress'])->name('user.company.address');
     });
 
+
     Route::prefix('user')->group(function() {
         Route::get('/{name}', [UserSettingController::class , 'edit'])->name('edit.profile');
         Route::post('edit-logo', [UserSettingController::class , 'editLogo'])->name('edit.logo');
@@ -79,5 +77,7 @@ Route::middleware(['auth'])->group(function () {
   
     Route::prefix('offer')->group(function() {
         Route::get('/', [UserOfferController::class , 'index'])->name('user.offer');
+        Route::get('/show', [UserOfferController::class , 'show'])->name('offer.show');
+
     });
 });

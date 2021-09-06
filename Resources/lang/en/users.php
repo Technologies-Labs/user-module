@@ -33,6 +33,7 @@ return [
         'write-your-complaint' => 'Write your complaint'
       ],
 
+
     'user'=>[
         'edit-basic-information' => 'Edit Basic Information',
         'name'                   => 'Name',
@@ -56,6 +57,8 @@ return [
         'add-offer'     => 'Add Offer',
         'description'   => 'Description',
         'upload-photos' => 'Upload Photos',
-        'edit-offer'    => 'Edit Offer'
+        'edit-offer'    => 'Edit Offer',
+        'start-date'    => 'Start Date',
+        'end-date'      => 'End Date'
     ]
     ];
