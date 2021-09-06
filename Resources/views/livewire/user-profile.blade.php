@@ -2,12 +2,17 @@
     <section>
         <div class="feature-photo">
             <figure>
-                <img src="{{asset('assets/images/resources/timeline-1.jpg')}}" alt="">
+                @if(!$logo)
+                    <img src="{{asset('assets/images/resources/timeline-1.jpg')}}" alt="">
+                @else
+                    <img src="{{ asset($logo)}}" alt="">
+                @endif
             </figure>
             <div class="add-btn">
                 @if(!$isCurrantUser)
                     @include('usermodule::components.user_profile.actions')
                     <livewire:usermodule::suggestion.user-suggestion :user="$user" />
+                    <livewire:usermodule::announcement.user-announcement :user="$user"/>
                 @endif
             </div>
             @if($isCurrantUser)

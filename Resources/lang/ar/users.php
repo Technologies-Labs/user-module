@@ -34,7 +34,31 @@ return [
         'send-complaint'       => 'إرسال الشكوى',
         'write-your-complaint' => 'اكتب شكواك'
     ],
+
+    'user'=>[
+        'edit-basic-information' => 'تعديل المعلومات الاساسية',
+        'name'                   => 'الاسم',
+        'full-name'              => 'الاسم الكامل',
+        'phone-no.'              => 'رقم الهاتف',
+        'edit-password'          => 'تعديل كلمة السر',
+        'current-password'       => 'كلمة السر الحالية',
+        'new-password'           => 'كلمة السر الجديدة',
+        'confirm-password'       => 'تأكيد كلمة السر'
+    ],
+
+    'announcement'=>[
+        'send-announcement'       => 'إرسال البلاغ',
+        'write-your-announcement' => 'اكتب بلاغك',
+        'add-announcement'        => 'إضافة بلاغ'
+      ],
+
     'offer'=>[
+        'published'     => 'نُشرت',
+        'add-new-offer' => 'إضافة عرض جديد',
+        'add-offer'     => 'إضافة عرض',
+        'description'   => 'الوصف',
+        'upload-photos' => 'تحميل صوره',
+        'edit-offer'    => 'تعديل العرض',
         'start-date' => 'تاريخ البداية',
         'end-date'   => 'تاريخ النهاية'
     ]
