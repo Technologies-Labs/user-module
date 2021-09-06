@@ -5,4 +5,3 @@
     @else
         unFollow
     @endif </a>
-<a href="#announcement_modal" data-toggle="modal" title="" data-ripple="">Add Announcement</a>
