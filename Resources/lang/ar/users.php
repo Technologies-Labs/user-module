@@ -34,6 +34,13 @@ return [
         'send-complaint'       => 'إرسال الشكوى',
         'write-your-complaint' => 'اكتب شكواك'
     ],
+
+    'announcement'=>[
+        'send-announcement'       => 'إرسال البلاغ',
+        'write-your-announcement' => 'اكتب بلاغك',
+        'add-announcement'        => 'إضافة بلاغ'
+      ],
+
     'offer'=>[
         'published'     => 'نُشرت',
         'add-new-offer' => 'إضافة عرض جديد',
@@ -41,5 +48,6 @@ return [
         'description'   => 'الوصف',
         'upload-photos' => 'تحميل صوره',
         'edit-offer'    => 'تعديل العرض'
+
     ]
 ];

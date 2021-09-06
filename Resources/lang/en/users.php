@@ -32,6 +32,13 @@ return [
         'send-complaint'       => 'Send Complaint',
         'write-your-complaint' => 'Write your complaint'
       ],
+
+    'announcement'=>[
+        'send-announcement'       => 'Send Announcement',
+        'write-your-announcement' => 'Write Your Announcement',
+        'add-announcement'        => 'Add Announcement'
+      ],
+  
     'offer'=>[
         'published'     => 'published',
         'add-new-offer' => 'Add New Offer',
@@ -39,5 +46,6 @@ return [
         'description'   => 'Description',
         'upload-photos' => 'Upload Photos',
         'edit-offer'    => 'Edit Offer'
+
     ]
     ];
