@@ -31,5 +31,13 @@ return [
         'add-complaint'        => 'Add Complaint',
         'send-complaint'       => 'Send Complaint',
         'write-your-complaint' => 'Write your complaint'
-      ]
+      ],
+    'offer'=>[
+        'published'     => 'published',
+        'add-new-offer' => 'Add New Offer',
+        'add-offer'     => 'Add Offer',
+        'description'   => 'Description',
+        'upload-photos' => 'Upload Photos',
+        'edit-offer'    => 'Edit Offer'
+    ]
     ];
