@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Modules\UserModule\Entities\UserGroup;
+use Modules\UserModule\Entities\Group;
 use Modules\UserModule\Services\UserGroupService;
 use Modules\UserModule\Repositories\UserGroupRepository;
 use Modules\UserModule\http\Requests\UserGroupRequest;

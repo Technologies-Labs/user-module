@@ -4,7 +4,7 @@ namespace Modules\UserModule\Services;
 
 use App\Models\User;
 use Livewire\WithFileUploads;
-use Modules\UserModule\Entities\UserGroup;
+use Modules\UserModule\Entities\Group;
 use Modules\UserModule\Enum\UserEnum;
 
 class UserGroupService
@@ -19,14 +19,15 @@ class UserGroupService
 
     public function createUserGroup()
     {
-        $userGroup = UserGroup::create(
+        $userGroup = Group::create(
             [
-                'user_id'               => $this->user->id,
                 'group_name'            => $this->name,
                 'group_description'     => $this->description,
                 'group_image'           => $this->image,
                 'is_public'             => $this->is_public
             ]);
+
+        $userGroup->supervisors()->attach($this->user->id , ['is_owner' => 1]);
 
         return response()->json([
             'success'       => ($userGroup) ? true : false,
