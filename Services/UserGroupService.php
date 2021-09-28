@@ -4,6 +4,7 @@ namespace Modules\UserModule\Services;
 
 use App\Models\User;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\File;
 use Modules\UserModule\Entities\Group;
 use Modules\UserModule\Enum\UserEnum;
 
@@ -35,6 +36,21 @@ class UserGroupService
         ]);
     }
 
+    public function updateGroup(Group $group)
+    {
+        $group->update([
+                'group_name'            => $this->name,
+                'group_description'     => $this->description,
+                'group_image'           => ($this->image??$group->group_image),
+                'is_public'             => $this->is_public
+        ]);
+
+        return response()->json([
+            'success'       => ($group) ? true : false,
+            'message'       => ($group) ? 'Group updated successfully' : 'Group Failed updated',
+        ]);
+    }
+
     public function setUser(User $user)
     {
         $this->user = $user;
@@ -63,6 +79,18 @@ class UserGroupService
             $this->image = UserEnum::USER_GROUP_DEFAULT_IMAGE;
         }
 
+        return $this;
+    }
+
+    public function updateImage($image , $old) {
+        if($image)
+        {
+            $this->image = $image->store('/','user_group_images');
+            if($old != UserEnum::USER_GROUP_DEFAULT_IMAGE)
+            {
+                File::delete('assets/images/user_groups'. $old);
+            }
+        }
         return $this;
     }
 
