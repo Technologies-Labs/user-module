@@ -14,12 +14,20 @@ class Group extends Model
 
     public function supervisors()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class , 'group_supervisors');
     }
 
     public function owner()
     {
-        return $this->belongsToMany(User::class)->wherePivot('is_owner' , 1);
+        return $this->belongsToMany(User::class , 'group_supervisors')->wherePivot('is_owner' , 1);
+    }
+
+    public function invitations() {
+        return $this->belongsToMany(User::class , 'group_members')->wherePivot('invite_status' , 0);
+    }
+
+    public function members() {
+        return $this->belongsToMany(User::class , 'group_members')->wherePivot('invite_status' , 1);
     }
 
     public function posts()
