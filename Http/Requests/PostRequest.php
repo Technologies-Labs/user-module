@@ -4,9 +4,9 @@ namespace Modules\UserModule\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserGroupRequest extends FormRequest
+class PostRequest extends FormRequest
 {
-     /**
+    /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
@@ -24,11 +24,9 @@ class UserGroupRequest extends FormRequest
     public function rules()
     {
         return [
-            'group_name'            => 'required',
-            'group_description'     => '',
-            'group_image'           => 'image',
-            'is_public'             => '',
+            'title'     => 'required|min:3',
+            'content'   => 'required|min:3',
+            'image'     => 'image'
         ];
     }
-
 }

@@ -21,4 +21,9 @@ class Group extends Model
     {
         return $this->belongsToMany(User::class)->wherePivot('is_owner' , 1);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
