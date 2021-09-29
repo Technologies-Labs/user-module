@@ -2,6 +2,7 @@
 
 namespace Modules\UserModule\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -87,9 +88,25 @@ class UserGroupController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(UserGroupRequest $request, $id)
     {
-        //
+        $group_user = User::where('id' , Auth::id())->whereHas('ownerGroups' , function($group) use($id){
+            $group->where('groups.id' , $id);
+        })->get();
+
+        if($group_user->isEmpty()) {
+            return redirect()->route('')->with('failed',"This group is Not Found");
+        }
+        $group = Group::find($id);
+        $userGroup = $this->userGroupService
+        ->setName($request->group_name)
+        ->setDescription($request->group_description)
+        ->updateImage($request->group_image , $group->group_image)
+        ->setIsPublic($request->is_public)
+        ->updateGroup($group)
+        ->getData();
+
+        return redirect()->back()->with($userGroup->success,$userGroup->message);
     }
 
     /**
