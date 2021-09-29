@@ -142,4 +142,27 @@ class UserGroupController extends Controller
 
         return redirect()->back()->with($invite->success,$invite->message);
      }
+
+     /**
+     * Add User to group
+     */
+
+    public function add(Request $request , $id)
+    {
+       $group_user = User::where('id' , Auth::id())->whereHas('ownerGroups' , function($group) use($id){
+           $group->where('groups.id' , $id);
+       })->get();
+
+       if($group_user->isEmpty()) {
+           return redirect()->route('')->with('failed',"This group is Not Found");
+       }
+       $groupMemberService = new GroupMembersService();
+       $add = $groupMemberService
+       ->setUserId($request->user_id)
+       ->setGroupId($request->group_id)
+       ->addUser()
+       ->getData();
+
+       return redirect()->back()->with($add->success,$add->message);
+    }
 }

@@ -19,6 +19,18 @@ class GroupMembersService
             'message'       => ($user) ? 'The user has been successfully invited to the group' : 'Failed to invite user to group',
         ]);
     }
+
+    public function addUser()
+    {
+        $user = User::find($this->userId);
+        $user->invitations()->attach($this->groupId , ['invite_status' => 1]);
+
+        return response()->json([
+            'success'       => ($user) ? true : false,
+            'message'       => ($user) ? 'The user has been successfully added to the group' : 'Failed to added user to group',
+        ]);
+    }
+
     public function setUserId($userId)
     {
         $this->userId = $userId;
