@@ -11,6 +11,7 @@ use Modules\UserModule\Entities\Group;
 use Modules\UserModule\Services\UserGroupService;
 use Modules\UserModule\Repositories\UserGroupRepository;
 use Modules\UserModule\http\Requests\UserGroupRequest;
+use Modules\userModule\Services\GroupMembersService;
 
 class UserGroupController extends Controller
 {
@@ -118,4 +119,27 @@ class UserGroupController extends Controller
     {
         //
     }
+
+    /**
+     * Invite User to group
+     */
+
+     public function invite(Request $request , $id)
+     {
+        $group_user = User::where('id' , Auth::id())->whereHas('supervisorGroups' , function($group) use($id){
+            $group->where('groups.id' , $id);
+        })->get();
+
+        if($group_user->isEmpty()) {
+            return redirect()->route('')->with('failed',"This group is Not Found");
+        }
+        $groupMemberService = new GroupMembersService();
+        $invite = $groupMemberService
+        ->setUserId($request->user_id)
+        ->setGroupId($request->group_id)
+        ->inviteUser()
+        ->getData();
+
+        return redirect()->back()->with($invite->success,$invite->message);
+     }
 }
