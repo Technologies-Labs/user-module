@@ -17,6 +17,7 @@ class UserGroupService
     public $description;
     public $image;
     public $is_public;
+    public $settings = [];
 
     public function createUserGroup()
     {
@@ -25,7 +26,8 @@ class UserGroupService
                 'group_name'            => $this->name,
                 'group_description'     => $this->description,
                 'group_image'           => $this->image,
-                'is_public'             => $this->is_public
+                'is_public'             => $this->is_public,
+                'settings'              => $this->settings
             ]);
 
         $userGroup->supervisors()->attach($this->user->id , ['is_owner' => 1]);
@@ -42,7 +44,8 @@ class UserGroupService
                 'group_name'            => $this->name,
                 'group_description'     => $this->description,
                 'group_image'           => ($this->image??$group->group_image),
-                'is_public'             => $this->is_public
+                'is_public'             => $this->is_public,
+                'settings'              => $this->settings
         ]);
 
         return response()->json([
@@ -100,5 +103,9 @@ class UserGroupService
         return $this;
     }
 
-
+    public function setSettings($settings)
+    {
+        $this->settings = $settings;
+        return $this;
+    }
 }

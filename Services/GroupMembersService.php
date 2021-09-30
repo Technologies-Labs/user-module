@@ -12,7 +12,7 @@ class GroupMembersService
     public function inviteUser()
     {
         $user = User::find($this->userId);
-        $user->invitations()->attach($this->groupId);
+        $user->groupRequests()->attach($this->groupId , ['invite_status' => 'invited to join']);
 
         return response()->json([
             'success'       => ($user) ? true : false,
@@ -23,7 +23,7 @@ class GroupMembersService
     public function addUser()
     {
         $user = User::find($this->userId);
-        $user->invitations()->attach($this->groupId , ['invite_status' => 1]);
+        $user->groups()->attach($this->groupId);
 
         return response()->json([
             'success'       => ($user) ? true : false,

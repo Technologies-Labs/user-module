@@ -28,6 +28,7 @@ class UserGroupRequest extends FormRequest
             'group_description'     => '',
             'group_image'           => 'image',
             'is_public'             => '',
+            'settings'              => '',
         ];
     }
 

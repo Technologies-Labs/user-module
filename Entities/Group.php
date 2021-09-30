@@ -11,6 +11,9 @@ class Group extends Model
     use SoftDeletes;
 
     protected $guarded = [];
+    protected $casts = [
+        'settings' => 'array'
+    ];
 
     public function supervisors()
     {
@@ -22,12 +25,12 @@ class Group extends Model
         return $this->belongsToMany(User::class , 'group_supervisors')->wherePivot('is_owner' , 1);
     }
 
-    public function invitations() {
-        return $this->belongsToMany(User::class , 'group_members')->wherePivot('invite_status' , 0);
+    public function requests() {
+        return $this->belongsToMany(User::class , 'group_requests')->withPivot('invite_status');
     }
 
     public function members() {
-        return $this->belongsToMany(User::class , 'group_members')->wherePivot('invite_status' , 1);
+        return $this->belongsToMany(User::class , 'group_members');
     }
 
     public function posts()

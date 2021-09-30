@@ -57,6 +57,7 @@ class UserGroupController extends Controller
         ->setDescription($request->group_description)
         ->setImage($request->group_image)
         ->setIsPublic($request->is_public)
+        ->setSettings($request->settings)
         ->createUserGroup()
         ->getData();
 
@@ -104,6 +105,7 @@ class UserGroupController extends Controller
         ->setDescription($request->group_description)
         ->updateImage($request->group_image , $group->group_image)
         ->setIsPublic($request->is_public)
+        ->setSettings($request->settings)
         ->updateGroup($group)
         ->getData();
 
