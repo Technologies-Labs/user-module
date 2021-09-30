@@ -167,4 +167,36 @@ class UserGroupController extends Controller
 
        return redirect()->back()->with($add->success,$add->message);
     }
+
+    /**
+     * Accept invite to join group
+     */
+
+    public function accept($groupId)
+    {
+       $groupMemberService = new GroupMembersService();
+       $accept = $groupMemberService
+       ->setUserId(Auth::id())
+       ->setGroupId($groupId)
+       ->acceptInvite()
+       ->getData();
+
+       return redirect()->back()->with($accept->success,$accept->message);
+    }
+
+    /**
+     * Reject invite to join group
+     */
+
+    public function reject($groupId)
+    {
+       $groupMemberService = new GroupMembersService();
+       $reject = $groupMemberService
+       ->setUserId(Auth::id())
+       ->setGroupId($groupId)
+       ->rejectInvite()
+       ->getData();
+
+       return redirect()->back()->with($reject->success,$reject->message);
+    }
 }

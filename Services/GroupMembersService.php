@@ -31,6 +31,29 @@ class GroupMembersService
         ]);
     }
 
+    public function acceptInvite()
+    {
+        $user = User::find($this->userId);
+        $user->groups()->attach($this->groupId);
+        $user->groupRequests()->detach($this->groupId);
+
+        return response()->json([
+            'success'       => ($user) ? true : false,
+            'message'       => ($user) ? 'The group has been joined' : 'Failed to join to group',
+        ]);
+    }
+
+    public function rejectInvite()
+    {
+        $user = User::find($this->userId);
+        $user->groupRequests()->detach($this->groupId);
+
+        return response()->json([
+            'success'       => ($user) ? true : false,
+            'message'       => ($user) ? 'The invitation to join the group was declined' : 'Failed to decline the invitation to join the group',
+        ]);
+    }
+
     public function setUserId($userId)
     {
         $this->userId = $userId;
