@@ -48,6 +48,12 @@ Route::middleware(['auth'])->group(function () {
  * Website Route
  */
 Route::middleware(['auth'])->group(function () {
+
+    Route::prefix('profile')->group(function() {
+        Route::get('/{name}', [UserController::class , 'getUserProfile'])->name('user.profile');
+
+    });
+
     Route::prefix('followers')->group(function() {
         //Route::get('add/{name}', [AddFollowAction::class , 'handle'])->name('user.add.follower');
     });
@@ -74,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('edit-logo', [UserSettingController::class , 'editLogo'])->name('edit.logo');
         Route::post('edit-image', [UserSettingController::class , 'editImage'])->name('edit.image');
     });
-  
+
     Route::prefix('offer')->group(function() {
         Route::get('/', [UserOfferController::class , 'index'])->name('user.offer');
         Route::get('/show', [UserOfferController::class , 'show'])->name('offer.show');

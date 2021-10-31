@@ -35,6 +35,6 @@ class UserSuggestion extends Component
                     ->setType      (SuggestionEnum::USER)
                     ->setFile      ($this->file);
         $suggestion->createSuggestion();
-//        $this->emit('resetFormInputs');
+       $this->emit('resetFormInputs');
     }
 }

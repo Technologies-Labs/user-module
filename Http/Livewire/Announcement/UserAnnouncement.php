@@ -28,17 +28,18 @@ class UserAnnouncement extends Component
 
     protected $rules = [
         'details' => 'required',
-        'file'    => 'required'
     ];
 
     public function addAnnouncement()
     {
+
         $this->validate($this->rules);
+
         $this->announcementService->setUserID     (Auth::user()->id)
                                    ->setOpponentID($this->user->id)
                                    ->setDetails   ($this->details)
                                    ->setFile      ($this->file);
-        $this->announcementService ->createAnnouncement();
+        $this->announcementService->createAnnouncement();
         $this->resetInputFields();
         $this->emit('modalClose');
     }

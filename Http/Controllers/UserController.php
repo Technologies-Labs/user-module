@@ -16,16 +16,21 @@ use Spatie\Permission\Models\Role;
 use Modules\UserModule\Http\Requests\UserRequest;
 use Modules\UserModule\Services\UserService;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Modules\CategoryModule\Entities\Category;
+use Modules\ProductModule\Entities\ProductStatus;
+use Modules\ProductModule\Repositories\ProductRepository;
 use Modules\UserModule\Repositories\UserRepository;
 use Modules\WalletModule\Entities\Wallet;
 
 class UserController extends Controller
 {
     private $userRepository;
+    private $productRepository;
 
     public function __construct()
     {
-         $this->userRepository  = new UserRepository();
+         $this->userRepository      = new UserRepository();
+         $this->productRepository   = new ProductRepository();
     }
 
     /**
@@ -185,6 +190,7 @@ class UserController extends Controller
         $user->delete();
         return 'user deleted ';
     }
+
     public function activate($id)
     {
 
@@ -194,6 +200,24 @@ class UserController extends Controller
         }
         $user->is_active = !$user->is_active;
         $user->save();
+    }
+
+    public function getUserProfile($name)
+    {
+        $user           = User::where('name' , $name)->first();
+        if (!$user){
+            abort(404);
+        }
+
+        $currantUser    = Auth::user();
+        $isCurrantUser  = $currantUser->name === $user->name;
+
+        $data           = $this->productRepository->getUserProducts($user);
+        $categories     = Category::all();
+        $statuses       = ProductStatus::all();
+
+        return view('usermodule::website.profile.index', compact('data','user','categories', 'statuses','isCurrantUser'));
+
     }
 
     public function getUserSocialMediaAccounts($name)
