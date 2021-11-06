@@ -16,7 +16,7 @@ class OfferService
 
     public function createOffer()
     {
-        $offer = Offer::create(
+        return Offer::create(
             [
                 'image'   => $this->image,
                 'details' => $this->details,
@@ -24,11 +24,12 @@ class OfferService
                 'user_id' => $this->user_id
             ]
         );
-
-        return response()->json([
-            'success'       => ($offer) ? true : false,
-            'message'       => ($offer) ? 'Offer created successfully' : 'Offer Failed created',
-        ]);
+        
+        // return response()->json([
+        //     'data'          => $offer,
+        //     'success'       => ($offer) ? true : false,
+        //     'message'       => ($offer) ? 'Offer created successfully' : 'Offer Failed created',
+        // ]);
     }
 
     public function updateOffer(Offer $offer)

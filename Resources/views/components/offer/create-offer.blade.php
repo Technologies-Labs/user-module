@@ -1,4 +1,4 @@
-<div >
+{{-- <div >
     <button class="mtr-btn" style="margin-bottom: 10px;"><a  data-toggle="modal" href="#create_offer"><span>{{__('add-new-offer')}}</span></a></button>
 </div>
 <!-- create offer Modal -->
@@ -33,4 +33,4 @@
         </div>
     </div>
 </div>
-<!-- /create offer Modal -->
+<!-- /create offer Modal --> --}}

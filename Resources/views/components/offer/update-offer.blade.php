@@ -1,4 +1,6 @@
-<span style="float: right;padding-left: 10px;"><a class="edit-link" wire:click="editUserOffer({{$offer->id}})" data-toggle="modal" href="#update_offer"><i class="fa fa-edit mr-1"></i></a></span>
+
+
+{{-- <span style="float: right;padding-left: 10px;"><a class="edit-link" wire:click="editUserOffer({{$offer->id}})" data-toggle="modal" href="#update_offer"><i class="fa fa-edit mr-1"></i></a></span>
 <!-- create offer Modal -->
 <div wire:ignore.self class="modal fade" id="update_offer" aria-hidden="true" role="dialog" data-backdrop="false" >
     <div class="modal-dialog modal-dialog-centered post-modal" role="document">
@@ -31,4 +33,4 @@
         </div>
     </div>
 </div>
-<!-- /create offer Modal -->
+<!-- /create offer Modal --> --}}

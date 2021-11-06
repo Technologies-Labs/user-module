@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="suggestions">
+<div class="tab-pane fade" id="suggestions" wire:ignore.self>
     <div class="main-wraper">
         <h3 class="main-title">All Suggestion</h3>
         <div class="editing-interest">

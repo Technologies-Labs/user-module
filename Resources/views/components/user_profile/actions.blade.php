@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
 <a data-ripple="" title="" href="javascript:void(0)"  wire:click="follow()" class="invite" style="right: 324px;">
     @if($isFollower)
         Follow
@@ -19,4 +19,4 @@
         Follow
     @else
         unFollow
-    @endif </a> --}}
+    @endif </a> --}} --}}

@@ -26,10 +26,8 @@
                             <li><a title="Share" href="#" data-toggle="tooltip"><i class="icofont-share-alt"></i></a> </li>
                         </ul> -->
                             @if(!$isCurrantUser)
-                                @include('usermodule::components.user_profile.actions')
+                                @include('usermodule::website.profile.components.actions')
                             @endif
-
-
 
                         </div>
 

@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserOfferController extends Controller
 {
-    public function show()
+    public function all()
      {
          return view('usermodule::website.offer.show-offer');
      }
-  
+
     public function index()
     {
         $user = Auth::user();

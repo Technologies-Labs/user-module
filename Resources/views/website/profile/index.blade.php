@@ -39,7 +39,9 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="tab-content">
-                                <div class="tab-pane fade active show" id="timeline">
+
+                                {{-- timeline --}}
+                                <div class="tab-pane fade active show" id="timeline"  wire:ignore.self>
                                     <div class="main-wraper">
                                         <span class="new-title">Create New Post</span>
                                         <div class="new-post">
@@ -220,7 +222,7 @@
                                 </div>
 
                                 {{-- Groups --}}
-                                <div class="tab-pane fade " id="groups">
+                                <div class="tab-pane fade " id="groups" wire:ignore.self>
                                     <div class="main-wraper">
                                         <h4 class="main-title"><i class=""><svg class="feather feather-users"
                                                     stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
@@ -245,8 +247,11 @@
                                     </div>
                                 </div>
 
+                                {{-- Offers --}}
+                                <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" />
+
                                 {{-- Information --}}
-                                <div class="tab-pane fade " id="contact">
+                                <div class="tab-pane fade " id="contact" wire:ignore.self>
                                     <div class="main-wraper">
                                         <h4 class="main-title">Information
                                             <div class="more">
@@ -327,8 +332,12 @@
                                     </div>
                                 </div>
 
-                                {{-- Suggestion --}}
+                                @if($isCurrantUser)
                                 <livewire:usermodule::suggestion.show-user-suggestions :user="$user" />
+                                @endif
+
+                                {{-- Suggestion --}}
+
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -365,5 +374,7 @@
         <livewire:usermodule::suggestion.user-suggestion :user="$user" />
         <livewire:usermodule::announcement.user-announcement :user="$user" />
     @endif
+
+
 @include('components.popups')
 @endsection

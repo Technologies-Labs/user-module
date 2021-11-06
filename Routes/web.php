@@ -13,6 +13,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \Modules\UserModule\Http\Actions\AddFollowAction;
+use Modules\UserModule\Http\Controllers\NotificationController;
 use Modules\UserModule\Http\Controllers\UserCompanyController;
 use Modules\UserModule\Http\Controllers\UserController;
 use Modules\UserModule\Http\Controllers\UserSettingController;
@@ -62,6 +63,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
     });
 
+    Route::prefix('notifications')->group(function() {
+        Route::get('/', [NotificationController::class , 'getUserNotification'])->name('user.all.notifications');
+    });
+
     Route::prefix('upgrade')->group(function() {
         Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
@@ -82,8 +87,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('offer')->group(function() {
-        Route::get('/', [UserOfferController::class , 'index'])->name('user.offer');
-        Route::get('/show', [UserOfferController::class , 'show'])->name('offer.show');
-
+        //Route::get('/', [UserOfferController::class , 'index'])->name('user.offer');
+        Route::get('/all', [UserOfferController::class , 'all'])->name('offer.all');
     });
 });
