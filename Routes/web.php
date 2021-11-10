@@ -59,9 +59,9 @@ Route::middleware(['auth'])->group(function () {
         //Route::get('add/{name}', [AddFollowAction::class , 'handle'])->name('user.add.follower');
     });
 
-    Route::prefix('account-settings')->group(function() {
-        Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
-    });
+    // Route::prefix('account-settings')->group(function() {
+    //     Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
+    // });
 
     Route::prefix('notifications')->group(function() {
         Route::get('/', [NotificationController::class , 'getUserNotification'])->name('user.all.notifications');
@@ -71,20 +71,20 @@ Route::middleware(['auth'])->group(function () {
         Route::post('store', [UpgradeController::class , 'upgrade'])->name('user.upgrade');
     });
 
-    Route::prefix('suggestions')->group(function() {
-        Route::get('/', [UserSuggestionController::class , 'index'])->name('user.suggestions');
-    });
+    // Route::prefix('suggestions')->group(function() {
+    //     Route::get('/', [UserSuggestionController::class , 'index'])->name('user.suggestions');
+    // });
 
-    Route::prefix('company-address')->group(function() {
-        Route::get('/{name}', [UserCompanyController::class , 'getUserCompanyAddress'])->name('user.company.address');
-    });
+    // Route::prefix('company-address')->group(function() {
+    //     Route::get('/{name}', [UserCompanyController::class , 'getUserCompanyAddress'])->name('user.company.address');
+    // });
 
 
-    Route::prefix('user')->group(function() {
-        Route::get('/{name}', [UserSettingController::class , 'edit'])->name('edit.profile');
-        Route::post('edit-logo', [UserSettingController::class , 'editLogo'])->name('edit.logo');
-        Route::post('edit-image', [UserSettingController::class , 'editImage'])->name('edit.image');
-    });
+    // Route::prefix('user')->group(function() {
+    //     Route::get('/{name}', [UserSettingController::class , 'edit'])->name('edit.profile');
+    //     Route::post('edit-logo', [UserSettingController::class , 'editLogo'])->name('edit.logo');
+    //     Route::post('edit-image', [UserSettingController::class , 'editImage'])->name('edit.image');
+    // });
 
     Route::prefix('offer')->group(function() {
         //Route::get('/', [UserOfferController::class , 'index'])->name('user.offer');

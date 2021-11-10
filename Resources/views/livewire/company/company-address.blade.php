@@ -1,4 +1,4 @@
-<div class="central-meta">
+{{-- <div class="central-meta">
     <div class="editing-info">
         <h5 class="f-title"><i class="ti-info-alt"></i>{{__('company-address')}}</h5>
         <div class="edit-contact-info">
@@ -27,4 +27,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}

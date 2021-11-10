@@ -1,4 +1,4 @@
-<form id="form">
+{{-- <form id="form">
     <div class="form-group half">
         <input type="text"  wire:model="country" id="input" required="required"/>
         <label class="control-label" for="input">{{__('country')}}</label><i class="mtrl-select"></i>
@@ -18,4 +18,4 @@
         <button wire:click.prevent="deleteCompanyAddress()" class="mtr-btn"><span>{{__('delete')}}</span></button>
         <button wire:click.prevent="updateCompanyAddress()" class="mtr-btn"><span>{{__('update')}}</span></button>
     </div>
-</form>
+</form> --}}

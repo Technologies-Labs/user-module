@@ -1,4 +1,4 @@
-@extends('layouts.simple.master')
+{{-- @extends('layouts.simple.master')
 @section('css')
 @endsection
 
@@ -23,4 +23,4 @@
 
 @section('scripts')
 
-@endsection
+@endsection --}}

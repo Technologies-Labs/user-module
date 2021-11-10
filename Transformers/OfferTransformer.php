@@ -12,7 +12,7 @@ class OfferTransformer
     public function transformAllOffer()
     {
         return [
-            'offers'  => Offer::where('type','admin')->where('active','1')->paginate(10),
+            'offers'  => Offer::where('type','admin')->where('active','1')->paginate(3),
         ];
     }
     public function transform(Offer $user)

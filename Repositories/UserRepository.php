@@ -25,7 +25,9 @@ class UserRepository
      */
     public function getUserSocialMediaAccounts(User $user)
     {
-        return SocialMediaAccount::firstOrCreate(['user_id' => $user->id]);
-        $user->socialMediaAccounts;
+        if( $user->socialMediaAccounts == null ){
+            return SocialMediaAccount::create(['user_id' => $user->id]);
+        }
+        return $user->socialMediaAccounts;
     }
 }

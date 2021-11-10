@@ -41,7 +41,7 @@
                             <div class="tab-content">
 
                                 {{-- timeline --}}
-                                <div class="tab-pane fade active show" id="timeline"  wire:ignore.self>
+                                <div class="tab-pane fade active show" id="timeline" wire:ignore.self>
                                     <div class="main-wraper">
                                         <span class="new-title">Create New Post</span>
                                         <div class="new-post">
@@ -222,115 +222,17 @@
                                 </div>
 
                                 {{-- Groups --}}
-                                <div class="tab-pane fade " id="groups" wire:ignore.self>
-                                    <div class="main-wraper">
-                                        <h4 class="main-title"><i class=""><svg class="feather feather-users"
-                                                    stroke-linejoin="round" stroke-linecap="round" stroke-width="2"
-                                                    stroke="currentColor" fill="none" viewBox="0 0 24 24" height="18"
-                                                    width="18" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                    <circle r="4" cy="7" cx="9"></circle>
-                                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                                </svg></i> Groups</h4>
-                                        <div class="row col-xs-6">
-                                            <div class="col-lg-3 col-md-4 col-sm-4">
-                                                <div class="group-box">
-                                                    <figure><img alt=""
-                                                            src="{{ asset('images/resources/group7.jpg') }}">
-                                                    </figure>
-                                                    <a title="" href="#">Sports Punch</a>
-                                                    <span>125M Members</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @if ($isCurrantUser)
+                                <livewire:groupmodule::group.user-groups :user="$user" :isCurrantUser="$isCurrantUser" />
+                                @endif
+
 
                                 {{-- Offers --}}
                                 <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" />
 
                                 {{-- Information --}}
-                                <div class="tab-pane fade " id="contact" wire:ignore.self>
-                                    <div class="main-wraper">
-                                        <h4 class="main-title">Information
-                                            <div class="more">
-                                                <div class="more-post-optns">
-                                                    <i class="">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="feather feather-more-horizontal">
-                                                            <circle cx="12" cy="12" r="1"></circle>
-                                                            <circle cx="19" cy="12" r="1"></circle>
-                                                            <circle cx="5" cy="12" r="1"></circle>
-                                                        </svg></i>
-                                                    <ul>
-                                                        <li>
-                                                            <a><i class="icofont-pen-alt-1"></i>Edit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </h4>
-                                        <div class="uni-info">
-                                            <ul>
-                                                <li>
-                                                    <span>Address</span>
-                                                    <p>Dumlupınar Bulvarı, 07058, Antalya, Turkey</p>
-                                                </li>
-                                                <li>
-                                                    <span>Website</span>
-                                                    <p><a href="#"> http://www.akdeniz.edu.tr</a></p>
-                                                </li>
-                                                <li>
-                                                    <span>Phone</span>
-                                                    <p>90 242 2274400</p>
-                                                </li>
-                                                <li>
-                                                    <span>Fax</span>
-                                                    <p>90 242 2275540</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="main-wraper">
-                                        <h4 class="main-title">Socials
-                                            <div class="more">
-                                                <div class="more-post-optns">
-                                                    <i class="">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            class="feather feather-more-horizontal">
-                                                            <circle cx="12" cy="12" r="1"></circle>
-                                                            <circle cx="19" cy="12" r="1"></circle>
-                                                            <circle cx="5" cy="12" r="1"></circle>
-                                                        </svg></i>
-                                                    <ul>
-                                                        <li>
-                                                            <a href="#"><i class="icofont-pen-alt-1"></i>Edit
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </h4>
-                                        <ul class="socials">
-                                            <li class="facebook">
-                                                <i class="icofont-facebook"></i><a href="#" title="">Georgofficial</a>
-                                            </li>
-                                            <li class="twitter">
-                                                <i class="icofont-twitter"></i><a href="#" title="">Georgofficial</a>
-                                            </li>
-                                            <li class="google">
-                                                <i class="icofont-instagram"></i><a href="#" title="">Georgofficial</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <livewire:usermodule::company.user-contact-us :user="$user"
+                                    :isCurrantUser="$isCurrantUser" />
 
                                 @if($isCurrantUser)
                                 <livewire:usermodule::suggestion.show-user-suggestions :user="$user" />
@@ -370,10 +272,10 @@
 @endsection
 
 @section('popups')
-    @if(!$isCurrantUser)
-        <livewire:usermodule::suggestion.user-suggestion :user="$user" />
-        <livewire:usermodule::announcement.user-announcement :user="$user" />
-    @endif
+@if(!$isCurrantUser)
+<livewire:usermodule::suggestion.user-suggestion :user="$user" />
+<livewire:usermodule::announcement.user-announcement :user="$user" />
+@endif
 
 
 @include('components.popups')

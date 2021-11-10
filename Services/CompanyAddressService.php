@@ -7,33 +7,28 @@ use Modules\UserModule\Entities\CompanyAddress;
 class CompanyAddressService
 {
     public $user_id;
-    public $country;
-    public $city;
-    public $street;
+    public $address;
+    public $phones;
 
     public function createCompanyAddress()
     {
         return CompanyAddress::create(
             [
-                'user_id' => $this->user_id,
-                'country' => $this->country,
-                'city'    => $this->city,
-                'street'  => $this->street
+                'user_id'   => $this->user_id,
+                'address'   => $this->address,
+                'phones'    => $this->phones,
             ]
         );
     }
 
     public function updateCompanyAddress(CompanyAddress $companyAddress)
     {
-        $companyAddress->update(
+        return $companyAddress->update(
             [
-                'country' => $this->country,
-                'city'    => $this->city,
-                'street'  => $this->street
+                'address'   => $this->address,
+                'phones'    => $this->phones,
             ]
         );
-
-        return CompanyAddress::find($companyAddress->id);
     }
 
     public function setUserID($user_id)
@@ -42,53 +37,15 @@ class CompanyAddressService
         return $this;
     }
 
-    public function setCountry($country)
+    public function setPhones($phones)
     {
-        $this->country = $country;
+        $this->phones = $phones;
         return  $this;
     }
 
-    public function setCity($city)
+    public function setAddress($address)
     {
-        $this->city = $city;
+        $this->address = $address;
         return $this;
-    }
-
-    public function setStreet($street)
-    {
-        $this->street = $street;
-        return $this;
-    }
-
-    /**
-     * get user_id
-     */
-    public function getUserID(): int
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * get country
-     */
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
-
-    /**
-     * get city
-     */
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    /**
-     * get Street
-     */
-    public function getStreet(): string
-    {
-        return $this->street;
     }
 }
