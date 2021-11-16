@@ -8,51 +8,49 @@ use App\Traits\UploadTrait;
 
 use function PHPUnit\Framework\isNull;
 
-class CompanyServiceService{
+class CompanyServiceService
+{
 
     use UploadTrait;
 
-    public $companyId;
+    public $userId;
     public $nama;
     public $description;
     public $image;
 
-    public function createCompanyService(){
+    public function createCompanyService()
+    {
 
-            return CompanyService::create(
+        return CompanyService::create(
             [
-                'company_id'          =>$this->companyId,
-                'name'                =>$this->name,
-                'description'         =>$this->description,
-                'image'               =>$this->image,
-
+                'user_id'       => $this->userId,
+                'name'          => $this->name,
+                'description'   => $this->description,
             ]
-            );
+        );
     }
 
     public function updateCompanyService(CompanyService $companyService)
     {
-         $companyService->update(
+        $companyService->update(
             [
-                'name'                =>$this->name,
-                'description'         =>$this->description,
-                'image'               =>($this->image??$companyService->image),
+                'name'                => $this->name,
+                'description'         => $this->description,
             ]
         );
-        return CompanyService::find($companyService->id);
-
+        return $companyService;
     }
 
     /**
-     * @param mixed $company_id
+     * @param mixed $user_id
      */
-    public function setCompanyId($companyId)
+    public function setUserId($userId)
     {
-        $this->companyId = $companyId;
+        $this->userId = $userId;
         return $this;
     }
 
-     /**
+    /**
      * @param mixed $name
      */
     public function setName($name)
@@ -62,7 +60,7 @@ class CompanyServiceService{
     }
 
 
-      /**
+    /**
      * @param mixed $description
      */
     public function setDescription($description)
@@ -78,19 +76,17 @@ class CompanyServiceService{
     public function setImage($image)
     {
 
-        $this->image = $this->storeImage($image,UserEnum::COMPANYSERVICE_IMAGE_PATH);
+        $this->image = $this->storeImage($image, UserEnum::COMPANYSERVICE_IMAGE_PATH);
         return $this;
     }
-         /**
+    /**
      * @param mixed $image
      */
-    public function updateImg($image ,$old_image)
+    public function updateImg($image, $old_image)
     {
-        if(isNull($old_image)){
-            $this->image =$this->storeImage($image,UserEnum::COMPANYSERVICE_IMAGE_PATH);
-        }else
-        $this->image =$this->updateImage($image,UserEnum::COMPANYSERVICE_IMAGE_PATH,$old_image);
-
+        if (isNull($old_image)) {
+            $this->image = $this->storeImage($image, UserEnum::COMPANYSERVICE_IMAGE_PATH);
+        } else
+            $this->image = $this->updateImage($image, UserEnum::COMPANYSERVICE_IMAGE_PATH, $old_image);
     }
-
 }

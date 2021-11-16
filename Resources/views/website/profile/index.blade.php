@@ -225,8 +225,6 @@
                                 @if ($isCurrantUser)
                                 <livewire:groupmodule::group.user-groups :user="$user" :isCurrantUser="$isCurrantUser" />
                                 @endif
-
-
                                 {{-- Offers --}}
                                 <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" />
 
@@ -234,11 +232,20 @@
                                 <livewire:usermodule::company.user-contact-us :user="$user"
                                     :isCurrantUser="$isCurrantUser" />
 
+                                {{-- Suggestion --}}
                                 @if($isCurrantUser)
                                 <livewire:usermodule::suggestion.show-user-suggestions :user="$user" />
                                 @endif
 
-                                {{-- Suggestion --}}
+                                {{-- About --}}
+                                <div class="tab-pane fade " id="company" wire:ignore.self>
+                                    <livewire:usermodule::company.company-services :user='$user' :isCurrantUser='$isCurrantUser'  />
+                                    <livewire:usermodule::company.company-statistics :user="$user"
+                                    :isCurrantUser="$isCurrantUser">
+                                </div>
+
+                                {{-- <livewire:usermodule::company.company-information :user="$user"
+                                    :isCurrantUser="$isCurrantUser" /> --}}
 
                             </div>
                         </div>

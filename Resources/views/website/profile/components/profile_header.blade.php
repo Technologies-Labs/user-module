@@ -10,5 +10,5 @@
     @endif
 
     <li class="nav-item"><a class="" href="#contact" wire:ignore data-toggle="tab">Contact Us</a></li>
-    <li class="nav-item"><a class="" href="company-home.html" wire:ignore>About</a></li>
+    <li class="nav-item"><a class="" href="#company" wire:ignore data-toggle="tab">About</a></li>
 </ul>

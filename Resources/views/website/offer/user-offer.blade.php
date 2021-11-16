@@ -1,4 +1,4 @@
-@extends('layouts.simple.master')
+{{-- @extends('layouts.simple.master')
 
 @include('usermodule::components.user_profile.index')
 
@@ -18,4 +18,4 @@
 
 @section('scripts')
     @include('productmodule::website.products.js.js')
-@endsection
+@endsection --}}
