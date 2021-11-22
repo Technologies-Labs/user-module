@@ -1,5 +1,5 @@
 <div class="main-wraper">
-    <h5 class="main-title">Statistics
+    <h5 class="main-title">Customer Say
         @if ($isCurrantUser)
         <div class="more">
             <div class="more-post-optns">
@@ -12,8 +12,9 @@
                         <circle cx="5" cy="12" r="1"></circle>
                     </svg></i>
                 <ul>
-                    <li wire:click='setStatisticCreateModal()' class="statistic-opearition">
+                    <li wire:click='setCustomerSayCreateModal()' class="customer-say-opearition">
                         <a><i class="icofont-pen-alt-1"></i>Create</a>
+
                     </li>
                 </ul>
             </div>
@@ -27,19 +28,26 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Count</th>
+                        <th>Say</th>
+                        <th>Image</th>
                         @if ($isCurrantUser)
                         <th>Action</th>
                         @endif
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($statistics as $statistic)
+                    @forelse ($customerSays as $customerSay)
                     <tr>
-                        <td>{{$statistic->name}}</td>
-                        <td>{{$statistic->count}}</td>
+                        <td>{{$customerSay->customer_name}}</td>
+                        <td>{{$customerSay->customer_say}}</td>
+                        <td>
+                            <figure>
+                                <img src="{{ asset('storage/'.$customerSay->customer_image)}}">
+                            </figure>
+
+                        </td>
                         @if ($isCurrantUser)
-                        <td><i class="" wire:click="deleteCompanyStatistic({{$statistic->id}})"  style="cursor: pointer">
+                        <td><i class="" wire:click="deleteCustomerSay({{$customerSay->id}})" style="cursor: pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-trash-2">
@@ -51,8 +59,8 @@
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg></i>
 
-                            <i wire:click="editUserStatistic({{$statistic->id}})"
-                                class="statistic-opearition icofont-pen-alt-1"  style="cursor: pointer"></i>
+                            <i wire:click="editUserCustomerSay({{$customerSay->id}})"
+                                class="customer-say-opearition icofont-pen-alt-1" style="cursor: pointer"></i>
                         </td>
                         @endif
 
@@ -68,7 +76,7 @@
             </table>
         </div>
     </div>
-    <div class="statistic-opearition-popup" wire:ignore.self>
+    <div class="customer-say-opearition-popup" wire:ignore.self>
         <div class="popup">
             <span class="popup-closed"><i class="icofont-close"></i></span>
             <div class="popup-meta">
@@ -83,12 +91,24 @@
                 <div class="send-message">
                     <form method="post" class="c-form">
 
-                        <input type="text" wire:model.defer="statisticName" placeholder="Enter Statistic Name..">
-                        @error('statisticName')<span class="text-danger">{{ $message }}</span>@enderror
+                        <input type="text" wire:model.defer="name" placeholder="Enter Customer Name..">
+                        @error('name')<span class="text-danger">{{ $message }}</span>@enderror
 
-                        <input type="text" wire:model.defer="statisticCount" placeholder="Enter Statistic Count">
-                        @error('statisticCount')<span class="text-danger">{{ $message }}</span>@enderror
+                        <input type="text" wire:model.defer="say" placeholder="Enter Customer Say">
+                        @error('say')<span class="text-danger">{{ $message }}</span>@enderror
 
+                        @if($modal['name'] == "Update")
+                            <img src="{{ asset('storage/'.$image)}}" class="w-50 p-4">
+                        @endif
+
+                        <div class="uploadimage">
+                            <i class="icofont-eye-alt-alt"></i>
+                            <label class="fileContainer">
+                                <input wire:model.defer="image" type="file">Upload Photo
+                                <div wire:loading wire:target="image" class="sp sp-circle"></div>
+                            </label>
+                        </div>
+                        @error('image')<span class="text-danger">{{ $message }}</span>@enderror
                         <button wire:click.prevent="{{$modal['route']}}" type="submit" class="main-btn">
                             <div wire:loading wire:target="{{$modal['route']}}" class="sp sp-circle"></div>
                             {{$modal['name']}}

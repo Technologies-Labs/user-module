@@ -11,6 +11,7 @@ class CompanyCustomerSay extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+    protected $table = "company_customers_say";
 
 }
 

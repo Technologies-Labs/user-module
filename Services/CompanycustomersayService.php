@@ -13,29 +13,31 @@ class CompanyCustomerSayService{
     public $customerName;
     public $customerSay;
     public $customerImage;
+    public $userId;
 
     public function createCompanyCustomerSay(){
 
             return CompanyCustomerSay::create(
             [
-                'customer_name'        =>$this->customerName,
-                'customer_say'         =>$this->customerSay,
-                'customer_image'       =>$this->customerImage,
+                'user_id'              => $this->userId,
+                'customer_name'        => $this->customerName,
+                'customer_say'         => $this->customerSay,
+                'customer_image'       => $this->customerImage,
 
             ]
             );
     }
 
-    public function updateCompanyCustomerSay(CompanyCustomerSay $CompanyCustomerSay)
+    public function updateCompanyCustomerSay(CompanyCustomerSay $companyCustomerSay)
     {
-         $CompanyCustomerSay->update(
+         $companyCustomerSay->update(
             [
-                'customer_name'        =>$this->customerName,
-                'customer_say'         =>$this->customerSay,
-                'customer_image'       =>($this->customerImage??$CompanyCustomerSay->customer_image),
+                'customer_name'        => $this->customerName,
+                'customer_say'         => $this->customerSay,
+                'customer_image'       => ($this->customerImage??$companyCustomerSay->customer_image),
             ]
         );
-        return CompanyCustomerSay::find($CompanyCustomerSay->id);
+        return $companyCustomerSay;
 
     }
      /**
@@ -63,19 +65,24 @@ class CompanyCustomerSayService{
      */
     public function setCustomerImage($customerImage)
     {
-
-        $this->customerImage = $this->storeImage($customerImage,'assets/images/company_customers_say');
+        $this->customerImage = $customerImage->store('customers say','public');
+        return $this;
+    }
+    public function setUserID($userId)
+    {
+        $this->userId = $userId;
         return $this;
     }
          /**
      * @param mixed $customerImage
      */
-    public function updateCustomerImg($customerImage ,$old_image)
+    public function updateCustomerImg($customerImage)
     {
-        if(isNull($old_image)){
-            $this->customerImage =$this->storeImage($customerImage,'assets/images/company_customers_say');
-        }else
-            $this->customerImage =$this->updateImage($customerImage,'assets/images/company_customers_say',$old_image);
+        if (!is_string($customerImage)) {
+            $this->customerImage  = $customerImage->store('customers say','public');
+        }
+        return $this;
+
     }
 
 }

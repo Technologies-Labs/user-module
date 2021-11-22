@@ -239,13 +239,13 @@
 
                                 {{-- About --}}
                                 <div class="tab-pane fade " id="company" wire:ignore.self>
+                                    <livewire:usermodule::company.company-banner :user='$user' :isCurrantUser='$isCurrantUser'  />
                                     <livewire:usermodule::company.company-services :user='$user' :isCurrantUser='$isCurrantUser'  />
-                                    <livewire:usermodule::company.company-statistics :user="$user"
-                                    :isCurrantUser="$isCurrantUser">
+                                    <livewire:usermodule::company.company-statistics :user="$user" :isCurrantUser="$isCurrantUser">
+                                        <livewire:usermodule::company.company-customer-say :user="$user" :isCurrantUser="$isCurrantUser" />
                                 </div>
 
-                                {{-- <livewire:usermodule::company.company-information :user="$user"
-                                    :isCurrantUser="$isCurrantUser" /> --}}
+
 
                             </div>
                         </div>
