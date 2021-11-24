@@ -43,7 +43,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('profile')->group(function() {
         Route::get('/{name}', [UserController::class , 'getUserProfile'])->name('user.profile');
-
+    });
+    Route::prefix('settings')->group(function() {
+        Route::get('/', [UserController::class , 'settingPage'])->name('user.setting');
     });
 
     Route::prefix('followers')->group(function() {

@@ -1,4 +1,4 @@
-<div>
+{{-- <div>
     <i class="ti-user"></i>
     <a href="#" data-toggle="modal" data-target="#user-upgrade-modal" title="">Upgrade</a>
 
@@ -30,4 +30,4 @@
     </div>
 
 </div>
-
+ --}}

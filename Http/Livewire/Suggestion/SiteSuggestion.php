@@ -2,6 +2,7 @@
 
 namespace Modules\UserModule\Http\Livewire\Suggestion;
 
+use App\Traits\ModalHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,10 +13,11 @@ use Modules\UserModule\Enum\SuggestionEnum;
 
 class SiteSuggestion extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads , ModalHelper;
 
     public $details;
     public $file;
+    public $template;
 
     public function render()
     {
@@ -33,9 +35,10 @@ class SiteSuggestion extends Component
         $suggestion ->setUserID    (Auth::user()->id)
                     ->setDetails   ($this->details)
                     ->setType      (SuggestionEnum::SITE)
-                    ->setFile      ($this->file);
-        $suggestion->createSuggestion();
-//        $this->emit('resetFormInputs');
+                    ->setFile      ($this->file)
+                    ->createSuggestion();
+
+        $this->modalClose('.add-site-suggestion-popup', 'success', "Your Suggestion Created Successfully", "Suggestion Create");
 
     }
 }

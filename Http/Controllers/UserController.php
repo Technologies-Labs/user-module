@@ -220,14 +220,8 @@ class UserController extends Controller
 
     }
 
-    public function getUserSocialMediaAccounts($name)
+    public function settingPage()
     {
-        $user = User::where('name' , $name)->first();
-        if (!$user || Auth::user()->name !=$name ){
-            abort(404);
-        }
-
-        $accounts = $this->userRepository->getUserSocialMediaAccounts($user);
-        return view('usermodule::website.account-settings',compact('accounts'));
+        return view('usermodule::website.profile.settings');
     }
 }

@@ -51,7 +51,7 @@ class UserService{
                 'logo'                =>($this->logo??$user->logo)
             ]
         );
-        return User::find($user->id);
+        return $user;
 
     }
 

@@ -1,29 +1,29 @@
 <?php
 
-namespace Modules\UserModule\Http\Livewire;
+// namespace Modules\UserModule\Http\Livewire;
 
-use Livewire\Component;
-use Spatie\Permission\Models\Role;
+// use Livewire\Component;
+// use Spatie\Permission\Models\Role;
 
-class UserUpgrade extends Component
-{
+// class UserUpgrade extends Component
+// {
 
-    public $packages;
-    public $role = "inti";
+//     public $packages;
+//     public $role = "inti";
 
-    public function mount()
-    {
-        $this->packages = Role::all();
+//     public function mount()
+//     {
+//         $this->packages = Role::all();
 
-    }
+//     }
 
-    public function render()
-    {
-        return view('usermodule::livewire.user-upgrade');
-    }
+//     public function render()
+//     {
+//         return view('usermodule::livewire.user-upgrade');
+//     }
 
-    public function save()
-    {
-        dd($this->role);
-    }
-}
+//     public function save()
+//     {
+//         dd($this->role);
+//     }
+// }

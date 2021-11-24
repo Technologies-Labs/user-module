@@ -2,6 +2,7 @@
 
 namespace Modules\UserModule\Http\Livewire\Suggestion;
 
+use App\Traits\ModalHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -10,7 +11,7 @@ use Modules\UserModule\Enum\SuggestionEnum;
 
 class UserSuggestion extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads , ModalHelper;
 
     public $user;
     public $details;
@@ -35,6 +36,6 @@ class UserSuggestion extends Component
                     ->setType      (SuggestionEnum::USER)
                     ->setFile      ($this->file);
         $suggestion->createSuggestion();
-       $this->emit('resetFormInputs');
+        $this->modalClose('.new-question-popup', 'success', "Your Suggestion Created Successfully", "Suggestion Create");
     }
 }

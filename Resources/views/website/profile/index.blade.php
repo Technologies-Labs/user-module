@@ -37,11 +37,12 @@
                                 </div><!-- complete profile widget -->
                             </aside>
                         </div>
+
                         <div class="col-lg-6">
                             <div class="tab-content">
 
                                 {{-- timeline --}}
-                                <div class="tab-pane fade active show" id="timeline" wire:ignore.self>
+                                <div  class="tab-pane fade active show" id="timeline" wire:ignore.self>
                                     <div class="main-wraper">
                                         <span class="new-title">Create New Post</span>
                                         <div class="new-post">
@@ -225,12 +226,12 @@
                                 @if ($isCurrantUser)
                                 <livewire:groupmodule::group.user-groups :user="$user" :isCurrantUser="$isCurrantUser" />
                                 @endif
+                                
                                 {{-- Offers --}}
                                 <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" />
 
                                 {{-- Information --}}
-                                <livewire:usermodule::company.user-contact-us :user="$user"
-                                    :isCurrantUser="$isCurrantUser" />
+                                <livewire:usermodule::company.user-contact-us :user="$user" :isCurrantUser="$isCurrantUser" />
 
                                 {{-- Suggestion --}}
                                 @if($isCurrantUser)
@@ -238,12 +239,14 @@
                                 @endif
 
                                 {{-- About --}}
+                                @if($isCurrantUser)
                                 <div class="tab-pane fade " id="company" wire:ignore.self>
-                                    <livewire:usermodule::company.company-banner :user='$user' :isCurrantUser='$isCurrantUser'  />
-                                    <livewire:usermodule::company.company-services :user='$user' :isCurrantUser='$isCurrantUser'  />
+                                    <livewire:usermodule::company.company-banner :user="$user" :isCurrantUser='$isCurrantUser'  />
+                                    <livewire:usermodule::company.company-services :user="$user" :isCurrantUser='$isCurrantUser'  />
                                     <livewire:usermodule::company.company-statistics :user="$user" :isCurrantUser="$isCurrantUser">
-                                        <livewire:usermodule::company.company-customer-say :user="$user" :isCurrantUser="$isCurrantUser" />
+                                    <livewire:usermodule::company.company-customer-say :user="$user" :isCurrantUser="$isCurrantUser" />
                                 </div>
+                                @endif
 
 
 
@@ -268,6 +271,9 @@
                                         </li>
                                     </ul>
                                 </div>
+
+                                <livewire:usermodule::suggestion.site-suggestion :template="'widget'" />
+
                             </aside>
                         </div>
                     </div>

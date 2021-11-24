@@ -50,7 +50,11 @@ class AnnouncementService
 
     public function setFile($file)
     {
-        $this->file = $file->store('announcement','public');
+        if($file)
+            $this->file = $file->store('announcements','public');
         return $this;
+
+        // $this->file = $file->store('announcement','public');
+        // return $this;
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.simple.master')
+{{-- @extends('layouts.simple.master')
 
 @section('left-sidebar')
     @include('layouts.simple.left-sidebar')
@@ -20,4 +20,4 @@
 
 @section('scripts')
 
-@endsection
+@endsection --}}

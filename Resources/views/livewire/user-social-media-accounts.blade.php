@@ -1,4 +1,4 @@
-<form wire:submit.prevent="update()" >
+{{-- <form wire:submit.prevent="update()" >
     <div class="edit-social-media-info">
 
         <div class="form-group ">
@@ -35,4 +35,4 @@
     <div class="submit-btns">
         <button type="submit" class="mtr-btn"><span>Update</span></button>
     </div>
-</form>
+</form> --}}

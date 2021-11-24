@@ -2,6 +2,7 @@
 
 namespace Modules\UserModule\Http\Livewire\Announcement;
 
+use App\Traits\ModalHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -9,7 +10,7 @@ use Modules\UserModule\Services\AnnouncementService;
 
 class UserAnnouncement extends Component
 {
-    use WithFileUploads;
+    use WithFileUploads , ModalHelper;
 
     public  $user;
     public  $details;
@@ -38,10 +39,10 @@ class UserAnnouncement extends Component
         $this->announcementService->setUserID     (Auth::user()->id)
                                    ->setOpponentID($this->user->id)
                                    ->setDetails   ($this->details)
-                                   ->setFile      ($this->file);
-        $this->announcementService->createAnnouncement();
-        $this->resetInputFields();
-        $this->emit('modalClose');
+                                   ->setFile      ($this->file)
+                                   ->createAnnouncement();
+
+        $this->modalClose('.add-announcement-popup', 'success', "Your Announcemen Created Successfully", "Announcemen Create");
     }
 
     public function cancel()

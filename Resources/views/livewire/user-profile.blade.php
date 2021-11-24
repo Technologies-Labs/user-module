@@ -7,7 +7,7 @@
                     <div class="post-subject">
                         <div class="university-tag">
                             <figure>
-                                <img src="{{ asset('') }}{{$user->image}}" alt="">
+                                <img src="{{ asset('storage') }}/{{$user->image}}" alt="">
                                 <!-- <form class="edit-phto">
                                 <i class="far fa-edit"></i>
                                 <label class="fileContainer">
@@ -18,7 +18,7 @@
                             </figure>
                             <div class="uni-name">
                                 <h4>{{$user->full_name}}</h4>
-                                <span>@ {{$user->name}}</span>
+                                <span>{{'@'.$user->name}}</span>
                             </div>
                             <!-- <ul class="sharing-options">
                             <li><a title="Invite Colleagues" href="#" data-toggle="tooltip"><i class="icofont-id-card"></i></a> </li>

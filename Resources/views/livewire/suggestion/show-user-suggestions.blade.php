@@ -8,7 +8,7 @@
                     <li>
                         <a class="uk-accordion-title" href="#">
                             <figure><img
-                                    src="{{ asset('')}}{{$suggestion->userSuggestion->image}}"
+                                    src="{{ asset('storage/')}}/{{$suggestion->userSuggestion->image}}"
                                     alt=""></figure>
                             <div class="notifi-meta">
                                 <p>{{$suggestion->userSuggestion->name}}</p>
@@ -33,12 +33,9 @@
                         <i class="del fa fa-close" wire:click ="deleteSuggestion({{$suggestion->id}})" ></i>
                     </li> --}}
                 @endforeach
-
-
-
                 </ul>
             </div>
-            <div class="sp sp-bars"></div>
+            @include('components.loading')
         </div>
     </div>
 </div>

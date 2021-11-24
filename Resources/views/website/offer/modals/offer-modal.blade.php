@@ -17,18 +17,23 @@
             </div>
             <div class="post-new">
                 <form wire:submit.prevent="{{$modal['route']}}" enctype="multipart/form-data" class="c-form">
+
                     <textarea wire:model.defer="details" rows="5" type="textarea" required="required"
                         placeholder="Offer Details"></textarea>
                     @error('details') <span class="error">{{ $message }}</span> @enderror
+
                     @if($modal['name'] =="update" && $offer->image)
                     <img src="{{ asset('storage/'.$image)}}" class="w-50 p-4">
                     @endif
+
                     <div class="uploadimage">
                         <i class="icofont-eye-alt-alt"></i>
                         <label class="fileContainer">
                             <input wire:model.defer="image" type="file">Upload Photo
                             @error('image') <span class="error">{{ $message }}</span> @enderror
-                            <div wire:loading wire:target="image" class="sp sp-circle"></div>
+                            <div wire:loading wire:target="image" class="sp sp-circle">
+                                {{-- <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" /> --}}
+                            </div>
                         </label>
 
                     </div>

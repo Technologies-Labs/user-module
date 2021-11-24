@@ -11,6 +11,15 @@ class ShowUserSuggestions extends Component
     private $suggestionRepository;
     public  $suggestions;
 
+    public $readyToLoad = false;
+
+    protected $listeners = ['loadSuggestions'];
+
+    public function loadSuggestions()
+    {
+        $this->readyToLoad = true ;
+    }
+
     function __construct()
     {
         $this->suggestionRepository = new SuggestionRepository();
@@ -18,7 +27,8 @@ class ShowUserSuggestions extends Component
 
     public function render()
     {
-        $this->suggestions = $this->suggestionRepository->getAllSuggestion($this->user);
+        
+        $this->suggestions = ($this->readyToLoad) ? $this->suggestionRepository->getAllSuggestion($this->user) : [];
         return view('usermodule::livewire.suggestion.show-user-suggestions');
     }
 
