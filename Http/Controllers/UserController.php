@@ -212,11 +212,12 @@ class UserController extends Controller
         $currantUser    = Auth::user();
         $isCurrantUser  = $currantUser->name === $user->name;
 
-        $data           = $this->productRepository->getUserProducts($user);
+        // $data           = $this->productRepository->getUserProducts($user);
+
         $categories     = Category::all();
         $statuses       = ProductStatus::all();
 
-        return view('usermodule::website.profile.index', compact('data','user','categories', 'statuses','isCurrantUser'));
+        return view('usermodule::website.profile.index', compact('user','categories', 'statuses','isCurrantUser'));
 
     }
 
