@@ -40,7 +40,7 @@
 
                         <div class="col-lg-6">
                             <div class="tab-content">
-
+                                
                                 {{-- timeline --}}
                                 <livewire:productmodule::product-list :user="$user" :isCurrantUser="$isCurrantUser" />
 

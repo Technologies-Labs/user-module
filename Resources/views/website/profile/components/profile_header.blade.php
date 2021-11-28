@@ -2,7 +2,7 @@
     <li class="nav-item"><a class="active" href="#timeline" wire:ignore data-toggle="tab">Timeline</a></li>
 
     @if($isCurrantUser)
-    <li class="nav-item"><a class=""  wire:click="$emit('loadGroups')" href="#groups" wire:ignore data-toggle="tab">Groups</a></li>
+    <li class="nav-item"><a class=""  wire:click="$emit('loadGroups')" href="#groups" wire:ignore data-toggle="tab">Groups</a> <span style="background-color: #ea0d0d; color: white" >5</span></li>
     @endif
 
     <li class="nav-item"><a class="" href="#Offers" wire:ignore data-toggle="tab">Offers</a></li>
@@ -13,6 +13,6 @@
 
     <li class="nav-item"><a class="" href="#contact" wire:ignore data-toggle="tab">Contact Us</a></li>
 
-    <li class="nav-item"><a class="" href="@if($isCurrantUser)#company @else{{ route('user.company', ['user' => $user]) }}@endif" wire:ignore @if ($isCurrantUser) data-toggle="tab" @endif>About</a></li>
+    <li class="nav-item"><a class="" href="@if($isCurrantUser)#company @else{{ route('user.company', ['user' => $user]) }}@endif" wire:ignore @if ($isCurrantUser) data-toggle="tab" @endif>About Company</a></li>
 
 </ul>
