@@ -15,6 +15,7 @@ class OfferTransformer
             'offers'  => Offer::where('type','admin')->where('active','1')->paginate(3),
         ];
     }
+
     public function transform(Offer $user)
     {
         return [
@@ -22,6 +23,13 @@ class OfferTransformer
             'name'          => (string) $user->name,
             'email'         => (string) $user->email,
             'address'       => (string) $user->address,
+        ];
+    }
+
+    public function transformAllOffersByPosition($position)
+    {
+        return [
+            'offers' => Offer::where('position',$position)->where('active','1')->paginate(10)
         ];
     }
 }

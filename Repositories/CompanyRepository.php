@@ -4,7 +4,6 @@ namespace Modules\UserModule\Repositories;
 
 use Illuminate\Foundation\Auth\User;
 use Modules\UserModule\Entities\Company;
-use Modules\UserModule\Entities\CompanyAddress;
 
 class CompanyRepository
 {
@@ -16,5 +15,12 @@ class CompanyRepository
     public function getAllUserCompanyAddress(User $user)
     {
         return  $user->companyAddress()->orderByDesc('created_at')->get();
+    }
+
+    public function getAllCompany()
+    {
+        return [
+            'companies' => Company::all()
+        ];
     }
 }
