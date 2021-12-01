@@ -3,7 +3,6 @@
     @include('usermodule::website.offer.components.create_offer')
     @endif
 
-
     @foreach ($userOffer as $offer)
     <div class="main-wraper">
         <div class="user-post">
@@ -68,10 +67,10 @@
 
     </div>
     @endforeach
+
     @if ($isCurrantUser)
     @include('usermodule::website.offer.modals.offer-modal')
     @endif
-
 
 </div>
 

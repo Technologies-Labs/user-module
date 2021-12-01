@@ -75,7 +75,8 @@ class UserOffer extends Component
     public function createUserOffer()
     {
         $this->validate($this->rules);
-        $this->offerService->setUserID($this->user->id)
+        $this->offerService
+            ->setUserID($this->user->id)
             ->setImage($this->image)
             ->setDetails($this->details)
             ->setType(OfferEnum::USER);

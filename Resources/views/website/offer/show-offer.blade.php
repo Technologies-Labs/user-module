@@ -23,8 +23,5 @@
 <livewire:usermodule::offer.show-offer />
 @endsection
 
-@section('right-sidebar')
-@include('layouts.simple.right-sidebar')
-@endsection
 
 

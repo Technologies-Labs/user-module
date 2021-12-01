@@ -1,5 +1,5 @@
 <div class="add-offer-popup" wire:ignore.self>
-    <div class="popup">
+    <div class="popup" >
         <span class="popup-closed"><i class="icofont-close"></i></span>
         <div class="popup-meta">
             <div class="popup-head">

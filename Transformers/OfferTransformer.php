@@ -15,13 +15,17 @@ class OfferTransformer
             'offers'  => Offer::where('type','admin')->where('active','1')->paginate(3),
         ];
     }
-    public function transform(Offer $user)
+    public function transform(Offer $offer)
     {
         return [
-            'id'            => (int) $user->id,
-            'name'          => (string) $user->name,
-            'email'         => (string) $user->email,
-            'address'       => (string) $user->address,
+            'id'                => (int) $offer->id,
+            'image'             => $offer->image,
+            'details'           => $offer->details,
+            'type'              => $offer->type,
+            'position'          => $offer->position,
+            'user_id'           => $offer->user_id,
+            'start_date'        => $offer->start_date,
+            'end_date'          => $offer->end_date,
         ];
     }
 }
