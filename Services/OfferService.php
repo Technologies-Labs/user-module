@@ -2,12 +2,14 @@
 
 namespace Modules\UserModule\Services;
 
+use App\Traits\ImageHelperTrait;
 use App\Traits\UploadTrait;
 use Modules\UserModule\Entities\Offer;
+use Modules\UserModule\Enum\OfferEnum;
 
 class OfferService
 {
-    use UploadTrait;
+    use UploadTrait , ImageHelperTrait;
 
     public $image;
     public $details;
@@ -24,7 +26,7 @@ class OfferService
                 'user_id' => $this->user_id
             ]
         );
-        
+
         // return response()->json([
         //     'data'          => $offer,
         //     'success'       => ($offer) ? true : false,
@@ -40,12 +42,17 @@ class OfferService
                 'details' => $this->details,
             ]
         );
-        return Offer::find($offer->id);
+        return $offer;
     }
 
     public function setImage($image)
     {
-        $this->image = $image->store('offers','public');
+        if(is_string($image)){
+            $this->image =  $image;
+            return $this;
+        }
+        //$image->store('offers','public');
+        $this->image = $this->uploadImageWithIntervention($image, 549, 329 ,OfferEnum::IMAGE)['name'];
         return $this;
     }
 

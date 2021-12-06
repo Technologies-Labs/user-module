@@ -2,10 +2,13 @@
 
 namespace Modules\UserModule\Http\Livewire\Offer;
 
+use App\Traits\ImageHelperTrait;
+use App\Traits\ModalHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 use Modules\UserModule\Entities\Offer;
 use Modules\UserModule\Enum\OfferEnum;
 use Modules\UserModule\Repositories\OfferRepository;
@@ -14,24 +17,37 @@ use phpDocumentor\Reflection\Types\This;
 
 class UserOffer extends Component
 {
-    use WithFileUploads;
+    use WithPagination, WithFileUploads, ModalHelper;
+
+    private $offerService;
+    private $offerRepository;
+
     public  $user;
 
     public  $image;
     public  $details;
     // public  $created_at;
 
-    public  $user_id;
-    public  $offer_id;
     public  $offer;
     public  $currentUser;
     public  $isCurrantUser;
-    public  $userOffer;
-    private $offerService;
-    private $offerRepository;
+
+    //public  $offers;
+    public $readyToLoad = false;
     public  $modal;
 
+    protected $listeners = ['loadOffers'];
 
+    public function getOffersProperty()
+    {
+        return ($this->readyToLoad) ? $this->offerRepository->getAllUserOffer($this->user, 2)->getData() : [];
+    }
+    protected $paginationTheme = 'bootstrap';
+
+    public function loadOffers()
+    {
+        $this->readyToLoad = true;
+    }
 
     public function __construct()
     {
@@ -43,8 +59,9 @@ class UserOffer extends Component
 
     public function render()
     {
-        $this->userOffer = $this->offerRepository->getAllUserOffer($this->user);
-        return view('usermodule::livewire.offer.user-offer');
+        return view('usermodule::livewire.offer.user-offer', [
+            'offers' =>  $this->offers,
+        ]);
     }
 
     public function setCreateModal()
@@ -54,8 +71,6 @@ class UserOffer extends Component
             'title' => 'Add Offer',
             'route' => 'createUserOffer()'
         ];
-        $this->image        = '';
-        $this->details      = '';
     }
 
     public function setUpdateModal()
@@ -69,73 +84,61 @@ class UserOffer extends Component
 
     protected $rules = [
         'details' => 'required',
-        'image'   => 'required',
+        'image'   => 'required | image',
     ];
 
     public function createUserOffer()
     {
         $this->validate($this->rules);
-        $this->offerService
+
+        $offer = $this->offerService
             ->setUserID($this->user->id)
             ->setImage($this->image)
             ->setDetails($this->details)
-            ->setType(OfferEnum::USER);
-        $offer = $this->offerService->createOffer();
+            ->setType(OfferEnum::USER)
+            ->createOffer();
 
-        $this->userOffer->push($offer);
+        //$this->offers->push($offer);
         $this->resetInputFields();
-        $this->emit('modalClose', '.add-offer-popup');
-        $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Offer Created Successfully", 'title' => 'Offer Create']);
+        $this->modalClose('.add-offer-popup', 'success', 'Your Offer Created Successfully', 'Your Offer Created Successfully');
     }
 
     public function editUserOffer($id)
     {
         //dd($this->userOffer->find($id));
         $this->setUpdateModal();
-        $this->offer    =  $this->userOffer->find($id);
-        $this->offer_id = $id;
+        $this->offer    = $this->offers->find($id);
         $this->image    = $this->offer->image;
         $this->details  = $this->offer->details;
+        $this->emit('showPopup','.add-offer-popup');
     }
 
     public function updateUserOffer()
     {
-        if (!$this->offer_id) {
-            session()->flash('message', 'not found offer');
-            return;
-        }
         $this->validate([
             'details' => 'required',
         ]);
 
-        $offer = [
-            'details' => $this->details
-        ];
-
-        if ($this->image && !is_string($this->image)) {
-            $offer['image'] = $this->image->store('offers', 'public');
-            // if ($offer['image']) {
-            //     Storage::delete($this->offer->image);
-            // }
-        }
-
-        $this->userOffer = $this->userOffer->find($this->offer_id)->update($offer);
-        $this->emit('modalClose', '.add-offer-popup');
-        $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Offer Updated Successfully", 'title' => 'Offer Updated']);
+        $offer = $this->offerService
+        ->setImage($this->image)
+        ->setDetails($this->details)
+        ->updateOffer($this->offer);
 
         $this->resetInputFields();
+        $this->modalClose('.add-offer-popup', 'success', 'Your Offer Updated Successfully', 'Your Offer Updated Successfully');
     }
 
     public function deleteOffer($id)
     {
-        $this->userOffer->find($id)->delete();
+        $offer = $this->offers->find($id);
+        if (!$offer) {
+            $this->modalClose('', 'error', 'error', 'error');
+            return null;
+        }
+        $offer->delete();
+        $this->emit('deleteItem', "#offer-post-" . $offer->id);
         $this->resetInputFields();
-        $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Offer Deleted Successfully", 'title' => 'Offer Delete']);
-    }
-
-    public function cancel()
-    {
-        $this->resetInputFields();
+        $this->modalClose('', 'success', 'Your Offer Deleted Successfully', 'Offer Delete');
     }
 
     public function resetInputFields()
@@ -143,8 +146,6 @@ class UserOffer extends Component
         $this->setCreateModal();
         $this->image        = '';
         $this->details      = '';
-        $this->user_id      = '';
-        $this->offer_id     = '';
-        $this->offer        = '';
+        $this->offer        = null;
     }
 }

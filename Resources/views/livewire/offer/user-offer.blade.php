@@ -1,10 +1,19 @@
-<div class="tab-pane fade" id="Offers" wire:ignore.self>
+<div>
+    @php
+        use Modules\UserModule\Enum\OfferEnum;
+    @endphp
+
     @if ($isCurrantUser)
-    @include('usermodule::website.offer.components.create_offer')
+        @include('usermodule::website.offer.components.create_offer')
+        @include('usermodule::website.offer.modals.offer-modal')
     @endif
 
-    @foreach ($userOffer as $offer)
-    <div class="main-wraper">
+    @include('components.loading')
+
+
+    @foreach ($offers as $offer)
+    <span></span>
+    <div class="main-wraper" id="offer-post-{{$offer->id}}">
         <div class="user-post">
             <div class="friend-info">
                 <figure>
@@ -31,7 +40,7 @@
                                     <circle cx="5" cy="12" r="1"></circle>
                                 </svg></i>
                             <ul>
-                                <li class="add-offer" wire:click="editUserOffer({{$offer->id}})">
+                                <li class="edit-offer" wire:click="editUserOffer({{$offer->id}})">
                                     <i class="icofont-pen-alt-1"></i>Edit Post
                                     <span>Edit This Post within a Hour</span>
                                 </li>
@@ -44,13 +53,12 @@
                     </div>
                     @endif
 
-
                     <ins><a title="" href="time-line.html">{{$user->name}}</a></ins>
                     <span><i class="icofont-globe"></i> published: {{$offer->created_at->diffForHumans()}} </span>
                 </div>
                 <div class="post-meta">
                     <figure id="main">
-                        <img src="{{ asset('storage/'.$offer->image)}}" alt="">
+                        <img src="{{ asset('storage/'.OfferEnum::IMAGE.$offer->image)}}" alt="">
                     </figure>
                     {{-- <a
                         href="https://themeforest.net/item/winku-social-network-toolkit-responsive-template/22363538"
@@ -64,60 +72,10 @@
                 </div>
             </div>
         </div>
-
     </div>
     @endforeach
 
-    @if ($isCurrantUser)
-    @include('usermodule::website.offer.modals.offer-modal')
-    @endif
-
+    @empty(!$offers)
+    {{$offers->links()}}
+    @endempty
 </div>
-
-
-
-
-
-
-{{-- <div>
-    @include('usermodule::components.offer.create-offer')
-    @foreach($userOffer as $offer)
-    <div class="loadMore">
-        <div>
-            <div class="central-meta item">
-                <div class="user-post">
-                    <div class="friend-info ">
-                        <div class="post-head">
-                            <div class="row">
-                                <div class="col-lg-10 col-sm-10 col-xs-10">
-                                    <figure><img src="{{asset('assets/images/resources/user-avatar.jpg')}}" alt="">
-                                    </figure>
-                                    <div class="friend-name ">
-                                        <ins><a href="" title=""> {{$currentUser->name}} </a></ins>
-                                        <span>{{__('published')}}: {{$offer->created_at}} </span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2  col-sm-2 col-xs-2">
-                                    @include('usermodule::components.offer.update-offer')
-                                    <span style="float: right;"><a wire:click="deleteOffer({{$offer->id}})"><i
-                                                class="fa fa-trash"></i></a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-meta" id="post">
-                            <div class="post-details text-center">
-                                <ul class="product-gallery">
-                                    <li><img src="{{ asset('storage/'.$offer->image)}}" alt=""></li>
-                                </ul>
-                            </div>
-                            <div class="description">
-                                <p> {{$offer->details}} </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
-</div> --}}

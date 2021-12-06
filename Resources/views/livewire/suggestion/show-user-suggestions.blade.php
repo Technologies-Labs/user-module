@@ -1,6 +1,15 @@
 <div class="tab-pane fade" id="suggestions" wire:ignore.self>
     <div class="main-wraper">
         <h3 class="main-title">All Suggestion</h3>
+        <div class="row merged-10">
+            <div class="col-lg-4">
+                <figure class="research-avatar">
+                    <a class="uk-inline" href="{{ asset('images/resources/image1.jpg') }}" data-fancybox="">
+                        <img src="{{ asset('images/resources/image1.jpg') }}" alt="">
+                    </a>
+                </figure>
+            </div>
+        </div>
         <div class="editing-interest">
             <div class="notification-box">
                 <ul class="uk-list-divider uk-list-large uk-accordion" uk-accordion="">
@@ -19,6 +28,12 @@
                         <i wire:click ="deleteSuggestion({{$suggestion->id}})"  class="del icofont-close-circled" title="Remove"></i>
                         <div class="uk-accordion-content" hidden="" aria-hidden="true">
                             <p>{{$suggestion->details}}</p>
+                            <figure class="research-avatar" style="max-width: 20%">
+                                <a class="uk-inline" href="{{ asset('images/resources/image1.jpg') }}" data-fancybox="">
+                                    <img src="{{ asset('images/resources/image1.jpg') }}"   style="border-radius: 0" alt="">
+                                </a>
+                            </figure>
+
                             <p>{{ asset('storage/'.$suggestion->file)}}</p>
                         </div>
                     </li>

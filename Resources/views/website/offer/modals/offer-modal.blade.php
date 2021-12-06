@@ -22,9 +22,9 @@
                         placeholder="Offer Details"></textarea>
                     @error('details') <span class="error">{{ $message }}</span> @enderror
 
-                    @if($modal['name'] =="update" && $offer->image)
-                    <img src="{{ asset('storage/'.$image)}}" class="w-50 p-4">
-                    @endif
+                    {{-- @if($modal['name'] =="update" && $offer->image)
+                    <img src="{{ asset('storage')}}/{{Modules\UserModule\Enum\OfferEnum::IMAGE}}{{$image}}" class="w-50 p-4">
+                    @endif --}}
 
                     <div class="uploadimage">
                         <i class="icofont-eye-alt-alt"></i>

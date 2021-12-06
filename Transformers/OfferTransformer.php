@@ -2,19 +2,17 @@
 
 namespace Modules\UserModule\Transformers;
 
+use League\Fractal\TransformerAbstract;
 use Livewire\WithPagination;
 use Modules\UserModule\Entities\Offer;
 
-class OfferTransformer
+class OfferTransformer  extends TransformerAbstract
 {
+
     //use WithPagination;
 
-    public function transformAllOffer()
-    {
-        return [
-            'offers'  => Offer::where('type','admin')->where('active','1')->paginate(3),
-        ];
-    }
+    
+
     public function transform(Offer $offer)
     {
         return [
@@ -28,4 +26,13 @@ class OfferTransformer
             'end_date'          => $offer->end_date,
         ];
     }
+
+
+    public function transformAllOffer()
+    {
+        return [
+            'offers'  => Offer::where('type','admin')->where('active','1')->paginate(3),
+        ];
+    }
+
 }

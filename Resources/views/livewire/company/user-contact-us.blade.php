@@ -1,4 +1,5 @@
 <div class="tab-pane fade " id="contact" wire:ignore.self>
+    @include('components.loading')
     <div class="main-wraper">
         <h5 class="main-title">Address
             @if ($isCurrantUser)
@@ -36,7 +37,7 @@
                     </thead>
                     <tbody>
                         @forelse ($addresses as $address)
-                        <tr>
+                        <tr id="address-{{$address->id}}">
                             <td>{{$address->address}}</td>
                             <td>{{$address->phones}}</td>
                             @if ($isCurrantUser)
@@ -91,28 +92,18 @@
         </h4>
         <div class="uni-info">
             <ul>
-                {{-- <li>
-                    <span>Address</span>
-                    <p>
-                        @forelse ($addresses as $address)
-                        {{$address->address}} <b>{{$address->phones}}</b>
-                        <br>
-                        @empty
-                        Not Available
-                        @endforelse
-                    </p>
-                </li> --}}
+                
                 <li>
                     <span>Website</span>
-                    <p><a href="{{$website}}"> {{$website ?? 'Not Available'}}</a></p>
+                    <p><a href="{{$website}}"> {{$contact->website ?? 'Not Available'}}</a></p>
                 </li>
                 <li>
                     <span>Phone</span>
-                    <p>{{$phone ?? 'Not Available'}}</p>
+                    <p>{{$contact->phone ?? 'Not Available'}}</p>
                 </li>
                 <li>
                     <span>Email</span>
-                    <p>{{$email ?? 'Not Available'}}</p>
+                    <p>{{$contact->email ?? 'Not Available'}}</p>
                 </li>
             </ul>
         </div>

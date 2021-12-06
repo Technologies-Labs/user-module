@@ -40,7 +40,7 @@
 
                         <div class="col-lg-6">
                             <div class="tab-content">
-                                
+
                                 {{-- timeline --}}
                                 <livewire:productmodule::product-list :user="$user" :isCurrantUser="$isCurrantUser" />
 
@@ -51,7 +51,11 @@
                                 @endif
 
                                 {{-- Offers --}}
-                                <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" />
+                                <div class="tab-pane fade" id="Offers" wire:ignore.self>
+                                    <livewire:usermodule::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" />
+                                </div>
+
+
 
                                 {{-- Information --}}
                                 <livewire:usermodule::company.user-contact-us :user="$user" :isCurrantUser="$isCurrantUser" />
@@ -114,5 +118,5 @@
 @endif
 
 
-@include('components.popups')
+{{-- @include('components.popups') --}}
 @endsection

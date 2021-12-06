@@ -39,7 +39,7 @@
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg></i> Edit Infomation</h5>
             </div>
-            <div class="send-message">}}
+            <div class="send-message">
                 <form method="post" class="c-form">
 
                     <input type="url" wire:model.defer="website" placeholder="Enter Website..">

@@ -2,6 +2,7 @@
 
 namespace Modules\UserModule\Http\Livewire\Company;
 
+use App\Traits\ModalHelper;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Modules\UserModule\Entities\CompanyAddress;
@@ -12,6 +13,7 @@ use Modules\UserModule\Services\CompanyAddressService;
 
 class UserContactUs extends Component
 {
+    use ModalHelper;
     private $userContactUsRepository;
     private $userAddressRepository;
     private $userRepository;
@@ -21,7 +23,7 @@ class UserContactUs extends Component
     public $isCurrantUser;
 
     public $contact;
-    public $addresses;
+    // public $addresses;
     public $socialMediaAccounts;
 
     public $address;
@@ -39,6 +41,20 @@ class UserContactUs extends Component
     public $whatsApp;
     public $modal;
 
+    public $readyToLoad = false;
+
+    protected $listeners = ['loadUserContactUs'];
+
+    public function getAddressesProperty()
+    {
+        return ($this->readyToLoad) ? $this->userAddressRepository->getUserAddresses($this->user) : [];
+    }
+
+    public function loadUserContactUs()
+    {
+        $this->readyToLoad = true ;
+    }
+
     public function __construct()
     {
         $this->resetInputFields();
@@ -51,13 +67,12 @@ class UserContactUs extends Component
     public function mount()
     {
         $this->contact                      = $this->userContactUsRepository->getUserContactUs($this->user);
-        $this->addresses                    = $this->userAddressRepository->getUserAddresses($this->user);
-        $this->socialMediaAccounts          = $this->userRepository->getUserSocialMediaAccounts($this->user);
 
         $this->website = $this->contact->website;
         $this->email = $this->contact->email;
         $this->phone = $this->contact->phone;
 
+        $this->socialMediaAccounts          = $this->userRepository->getUserSocialMediaAccounts($this->user);
         $this->facebook = $this->socialMediaAccounts->facebook;
         $this->twitter = $this->socialMediaAccounts->twitter;
         $this->instegram = $this->socialMediaAccounts->instegram;
@@ -66,7 +81,12 @@ class UserContactUs extends Component
 
     public function render()
     {
-        return view('usermodule::livewire.company.user-contact-us');
+
+        $socialMediaAccounts          = $this->userRepository->getUserSocialMediaAccounts($this->user);
+
+        return view('usermodule::livewire.company.user-contact-us',[
+            'addresses'             => $this->addresses,
+        ]);
     }
 
     protected $rules = [
@@ -82,7 +102,6 @@ class UserContactUs extends Component
             'route' => 'createUserAddress()'
         ];
     }
-
     public function setUpdateModal()
     {
         $this->modal = [
@@ -91,6 +110,73 @@ class UserContactUs extends Component
             'route' => 'updateUserAddress()'
         ];
     }
+
+    /**
+     * Start Address
+     */
+    public function createUserAddress()
+    {
+        $this->validate($this->rules);
+
+        $address = $this->companyAddressService
+            ->setUserID($this->user->id)
+            ->setAddress($this->address)
+            ->setPhones($this->phones)
+            ->createCompanyAddress();
+
+        //$this->addresses = $this->addresses->push($address);
+        $this->resetInputFields();
+        $this->modalClose('.address-op-popup','success','Your Address Created Successfully','Address Create');
+
+    }
+    public function editUserAddress($id)
+    {
+        $this->setUpdateModal();
+        $address = $this->addresses->find($id);
+        if (!$address) {
+            abort(404);
+        }
+        $this->addressModal = $address;
+        $this->address = $address->address;
+        $this->phones = $address->phones;
+        $this->emit('showPopup','.address-op-popup');
+
+    }
+    public function updateUserAddress()
+    {
+        if (!$this->addressModal) {
+            abort(404);
+            return;
+        }
+        $this->validate($this->rules);
+        $this->companyAddressService = new CompanyAddressService();
+        $address = $this->companyAddressService
+            ->setAddress($this->address)
+            ->setPhones($this->phones)
+            ->updateCompanyAddress($this->addressModal);
+
+        $this->resetInputFields();
+        $this->modalClose('.address-op-popup','success','Your Address Updated Successfully','Address Updated');
+
+    }
+    public function deleteUserAddress($id)
+    {
+        $address = $this->addresses->find($id);
+        if (!$address) {
+            abort(404);
+        }
+        // $this->addresses  = $this->addresses->filter(function($item) use ($address){
+        //     return $item->id != $address->id;
+        // });
+        $this->emit('deleteItem', "#address-" . $address->id);
+        $address->delete();
+        $this->modalClose('.address-op-popup','success','Your Address Deleted Successfully','Address Delete');
+        //$this->resetInputFields();
+
+    }
+    /**
+     * End Address
+     */
 
     public function updateContactUs()
     {
@@ -117,50 +203,6 @@ class UserContactUs extends Component
         $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Information Updated Successfully", 'title' => 'Information Update']);
     }
 
-    public function editUserAddress($id)
-    {
-        $this->setUpdateModal();
-        $address = $this->addresses->find($id);
-        if (!$address) {
-            abort(404);
-        }
-        $this->addressModal = $address;
-        $this->address = $address->address;
-        $this->phones = $address->phones;
-
-    }
-
-    public function updateUserAddress()
-    {
-        if (!$this->addressModal) {
-            abort(404);
-            return;
-        }
-        $this->validate($this->rules);
-        $this->companyAddressService = new CompanyAddressService();
-        $address = $this->companyAddressService->setAddress($this->address)
-            ->setPhones($this->phones)
-            ->updateCompanyAddress($this->addressModal);
-        $this->emit('modalClose', '.address-op-popup');
-        $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Address Updated Successfully", 'title' => 'Address Update']);
-    }
-
-    public function createUserAddress()
-    {
-        $this->validate($this->rules);
-
-        $address = $this->companyAddressService
-            ->setUserID($this->user->id)
-            ->setAddress($this->address)
-            ->setPhones($this->phones)
-            ->createCompanyAddress();
-
-        $this->addresses = $this->addresses->push($address);
-        //$this->resetInputFields();
-        $this->emit('modalClose', '.address-op-popup');
-        $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Address Created Successfully", 'title' => 'Address Create']);
-    }
-
     public function resetInputFields()
     {
         $this->setCreateModal();
@@ -168,18 +210,5 @@ class UserContactUs extends Component
         $this->phones      = '';
     }
 
-    public function deleteUserAddress($id)
-    {
-        $address = $this->addresses->find($id);
-        if (!$address ||  !$address->delete()) {
-            abort(404);
-        }
-        $this->addresses  = $this->addresses->filter(function($item) use ($address){
-            return $item->id != $address->id;
-        });
 
-        //$this->resetInputFields();
-        $this->emit('modalClose', '.address-op-popup');
-        $this->emit('showMessage', ['icon' => 'success', 'text' => "Your Address Deleted Successfully", 'title' => 'Address Delete']);
-    }
 }
