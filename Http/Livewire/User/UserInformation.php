@@ -5,11 +5,12 @@ namespace Modules\UserModule\Http\Livewire\User;
 use App\Traits\ModalHelper;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 use Modules\UserModule\Services\UserService;
 
 class UserInformation extends Component
 {
-    use ModalHelper ;
+    use ModalHelper , WithFileUploads;
     private $userService;
 
     public  $user;
@@ -17,7 +18,8 @@ class UserInformation extends Component
     public  $full_name;
     public  $email;
     public  $phone;
-    // public  $image;
+    public  $image;
+    public  $logo;
 
 
     public  $password;
@@ -28,13 +30,16 @@ class UserInformation extends Component
 
     public function __construct()
     {
+        $this->userService = new UserService();
+
         $this->user        = Auth::user();
         $this->name        = $this->user->name;
         $this->full_name   = $this->user->full_name;
         $this->email       = $this->user->email;
         $this->phone       = $this->user->phone;
-        // $this->image    = $this->user->image;
-        $this->userService = new UserService();
+        $this->image       = $this->user->image;
+        $this->logo        = $this->user->logo;
+
     }
 
     public function render()
@@ -52,13 +57,16 @@ class UserInformation extends Component
 
     public function updateUserInfo()
     {
+
         $this->validate($this->rules);
         $this->userService ->setName     ($this->name)
                            ->setFullName ($this->full_name)
                            ->setEmail    ($this->email)
                            ->setPhone    ($this->phone)
+                           ->setImage    ($this->image)
+                           ->setLogo     ($this->logo)
                            ->updateUser  ($this->user);
-                           
+
         $this->modalClose('', 'success', "Your Information Updated Successfully", "Information Update");
         return null;
 

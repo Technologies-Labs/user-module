@@ -59,7 +59,7 @@ class SuggestionService
     public function setFile($file)
     {
         if($file)
-            $this->file = $file->store('suggestions');
+            $this->file = $file->store('suggestions','public');
         return $this;
     }
 }

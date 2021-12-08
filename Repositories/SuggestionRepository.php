@@ -6,9 +6,9 @@ use App\Models\User;
 
 class SuggestionRepository
 {
-    public function getAllSuggestion(User $user){
+    public function getAllSuggestion(User $user , $paginate = 10){
 
-        return $user->suggestions()->with('userSuggestion')->get();
+        return $user->suggestions()->with('userSuggestion')->paginate($paginate,['*'],null);
     }
 }
 

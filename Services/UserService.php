@@ -2,6 +2,7 @@
 namespace Modules\UserModule\Services;
 
 use App\Models\User;
+use App\Traits\ImageHelperTrait;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
@@ -11,8 +12,7 @@ use function PHPUnit\Framework\isNull;
 
 class UserService{
 
-    use UploadTrait;
-    use WithFileUploads;
+    use UploadTrait , WithFileUploads , ImageHelperTrait;
 
     public $name;
     public $full_name;
@@ -47,7 +47,7 @@ class UserService{
                 'email'               =>($this->email??$user->email),
                 'password'            =>($this->password??$user->password),
                 'phone'               =>($this->phone??$user->phone),
-                'image'               =>($this->image??$user->image),
+                'image'               =>($this->image),
                 'logo'                =>($this->logo??$user->logo)
             ]
         );
@@ -105,10 +105,11 @@ class UserService{
      */
     public function setImage($image)
     {
-        if(isNull($image) ){
-            $this->image=UserEnum::USER_DEFAULT_IMAGE;
-        }else
-        $this->image =$this->storeImage($image,UserEnum::USER_IMAGE_PATH);
+        if (is_string($image)) {
+            $this->image = $image;
+            return $this;
+        }
+        $this->image = UserEnum::USER_IMAGE_PATH.$this->uploadImageWithIntervention($image , 116 , 116 , UserEnum::USER_IMAGE_PATH)['name'];
         return $this;
     }
 
@@ -117,10 +118,13 @@ class UserService{
      */
     public function setLogo($logo)
     {
-        if (isNull($logo)){
-            $this->logo = UserEnum::USER_DEFAULT_LOGO;
-        }else
-          $this->logo = $this->storeImage($logo,UserEnum::USER_IMAGE_PATH);
+        if (is_string($logo)) {
+            $this->logo = $logo;
+            return $this;
+        }
+
+        $this->logo = UserEnum::USER_IMAGE_PATH.$this->uploadImageWithIntervention($logo , 116 , 116 , UserEnum::USER_IMAGE_PATH)['name'];
+
         return $this;
     }
 

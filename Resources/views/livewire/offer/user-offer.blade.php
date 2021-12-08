@@ -1,11 +1,11 @@
 <div>
     @php
-        use Modules\UserModule\Enum\OfferEnum;
+    use Modules\UserModule\Enum\OfferEnum;
     @endphp
 
     @if ($isCurrantUser)
-        @include('usermodule::website.offer.components.create_offer')
-        @include('usermodule::website.offer.modals.offer-modal')
+    @include('usermodule::website.offer.components.create_offer')
+    @include('usermodule::website.offer.modals.offer-modal')
     @endif
 
     @include('components.loading')
@@ -74,8 +74,30 @@
         </div>
     </div>
     @endforeach
+    
+    <div x-data="{
+        offersObserve() {
+            let observer = new IntersectionObserver((entries) => {
+            console.log(entries)
+            entries.forEach(entry => {
+                if (entry.isIntersecting)
+                {
+                    @this.call('loadMore')
+                }
+               })
+            },{
+               root: null
+            })
+                observer.observe(this.$el)
+        }
+    }" x-init="offersObserve">
 
-    @empty(!$offers)
+    </div>
+
+    @if($offers && $offers->hasMorePages())
+    @include('components.loading')
+    @endif
+    {{-- @empty(!$offers)
     {{$offers->links()}}
-    @endempty
+    @endempty --}}
 </div>

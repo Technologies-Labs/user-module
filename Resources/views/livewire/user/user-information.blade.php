@@ -30,18 +30,29 @@
                         @error('phone') <span class="error">{{ $message }}</span> @enderror
                     </div>
 
-                    {{-- <div class="mb-4 col-lg-6">
-                        <figure id="main">
+                    <div class="mb-4 col-lg-6">
+                        <b>Profile Image</b>
+                        {{-- <figure id="main">
                             <img src="{{ asset('storage/'.$image)}}" alt="">
-                        </figure>
+                        </figure> --}}
                         <input class="uk-input" wire:model="image" type="file" placeholder="Logo">
                         @error('image') <span class="error">{{ $message }}</span> @enderror
-                    </div> --}}
+                        <div wire:loading wire:target="image" class="sp sp-circle"></div>
+                    </div>
+
+                    <div class="mb-4 col-lg-6">
+                        <b>Logo Image</b>
+                        {{-- <figure id="main">
+                            <img src="{{ asset('storage/'.$image)}}" alt="">
+                        </figure> --}}
+                        <input class="uk-input" wire:model="logo" type="file" placeholder="Logo">
+                        @error('logo') <span class="error">{{ $message }}</span> @enderror
+                        <div wire:loading wire:target="logo" class="sp sp-circle"></div>
+                    </div>
 
 
                     <div class="mb-0 col-lg-12">
-                        <button type="submit" class="button primary circle">Save
-                            Changes</button>
+                        <button type="submit" class="button primary circle">Save Changes</button>
                     </div>
                 </fieldset>
             </form>

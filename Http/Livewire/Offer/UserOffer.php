@@ -17,7 +17,7 @@ use phpDocumentor\Reflection\Types\This;
 
 class UserOffer extends Component
 {
-    use WithPagination, WithFileUploads, ModalHelper;
+    use WithFileUploads, ModalHelper;
 
     private $offerService;
     private $offerRepository;
@@ -38,24 +38,38 @@ class UserOffer extends Component
 
     protected $listeners = ['loadOffers'];
 
+    public  $perPage = 1;
+
+    public function loadMore()
+    {
+        $this->perPage += 1;
+    }
+
     public function getOffersProperty()
     {
-        return ($this->readyToLoad) ? $this->offerRepository->getAllUserOffer($this->user, 2)->getData() : [];
+        return ($this->readyToLoad) ? $this->offerRepository->getAllUserOffer($this->user, $this->perPage)->getData() : [];
     }
-    protected $paginationTheme = 'bootstrap';
 
     public function loadOffers()
     {
         $this->readyToLoad = true;
     }
 
-    public function __construct()
+    public function boot()
     {
         $this->setCreateModal();
         $this->offerService    = new OfferService();
         $this->offerRepository = new OfferRepository();
         $this->currentUser     = Auth::user();
     }
+
+    // public function __construct()
+    // {
+    //     $this->setCreateModal();
+    //     $this->offerService    = new OfferService();
+    //     $this->offerRepository = new OfferRepository();
+    //     $this->currentUser     = Auth::user();
+    // }
 
     public function render()
     {

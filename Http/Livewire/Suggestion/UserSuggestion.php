@@ -36,6 +36,13 @@ class UserSuggestion extends Component
                     ->setType      (SuggestionEnum::USER)
                     ->setFile      ($this->file);
         $suggestion->createSuggestion();
+        $this->resetFilters();
         $this->modalClose('.new-question-popup', 'success', "Your Suggestion Created Successfully", "Suggestion Create");
+    }
+
+    public function resetFilters()
+    {
+        $this->details = null;
+        $this->file = null;
     }
 }

@@ -12,15 +12,11 @@ class OfferRepository
 {
     public function getAllOffersByType($type, $paginate = 10)
     {
-        $offers = Offer::where('type', $type)->paginate($paginate);
+        $offers = Offer::where('type', $type)->paginate($paginate,['*'],null);
         return new Collection($offers, new OfferTransformer());
     }
 
-    public function getAllOffer()
-    {
-        return (new OfferTransformer())->transformAllOffer();
-    }
-
+    
     public function getAllUserOffer(User $user,$paginate = 10)
     {
         $offers = $user->offers()->paginate($paginate);
@@ -30,8 +26,5 @@ class OfferRepository
         //$offers = $user->offers()->paginate($paginate);
 
         return $resource;
-
-        // return $user->offers()
-        //     ->select('id', 'image', 'details', 'created_at')->get();
     }
 }
