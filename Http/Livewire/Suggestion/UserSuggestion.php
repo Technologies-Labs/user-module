@@ -2,10 +2,13 @@
 
 namespace Modules\UserModule\Http\Livewire\Suggestion;
 
+use App\Actions\Notification\SendNotification;
 use App\Traits\ModalHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\NotificationModule\Enums\NotificationTemplateKeysEnums;
+use Modules\UserModule\Notifications\SuggestionNotification;
 use Modules\UserModule\Services\SuggestionService;
 use Modules\UserModule\Enum\SuggestionEnum;
 
@@ -37,6 +40,13 @@ class UserSuggestion extends Component
                     ->setFile      ($this->file);
         $suggestion->createSuggestion();
         $this->resetFilters();
+        $suggestionNotification = new SuggestionNotification();
+        $suggestionNotification
+        ->setTemplate(NotificationTemplateKeysEnums::CREATE_SUGGESTION)
+        ->setUser($this->user)
+        ->setSuggest(Auth::user())
+        ->handle();
+
         $this->modalClose('.new-question-popup', 'success', "Your Suggestion Created Successfully", "Suggestion Create");
     }
 
