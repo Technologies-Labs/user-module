@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Modules\NotificationModule\Enums\NotificationTemplateKeysEnums;
 use Modules\UserModule\Entities\Offer;
 use Modules\UserModule\Enum\OfferEnum;
+use Modules\UserModule\Notifications\OfferNotification;
 use Modules\UserModule\Repositories\OfferRepository;
 use Modules\UserModule\Services\OfferService;
 use phpDocumentor\Reflection\Types\This;
@@ -112,7 +114,14 @@ class UserOffer extends Component
             ->setType(OfferEnum::USER)
             ->createOffer();
 
-        //$this->offers->push($offer);
+        $notification = new OfferNotification();
+        $notification
+        ->setTemplate(NotificationTemplateKeysEnums::CREATE_OFFER)
+        ->setUser($this->user)
+        ->setOffer($offer)
+        ->setCreateOfferMessage()
+        ->handle();
+        
         $this->resetInputFields();
         $this->modalClose('.add-offer-popup', 'success', 'Your Offer Created Successfully', 'Your Offer Created Successfully');
     }

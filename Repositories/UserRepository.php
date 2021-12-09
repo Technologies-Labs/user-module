@@ -15,10 +15,10 @@ class UserRepository
     /**
      * Get User Notifications
      */
-    public function getUserNotifications($type)
-    {
-        return (new NotificationTransformer())->transformAllNotifications($type);
-    }
+    // public function getUserNotifications($type)
+    // {
+    //     return (new NotificationTransformer())->transformAllNotifications($type);
+    // }
 
     /**
      * Get User socialMediaAccounts

@@ -10,7 +10,7 @@
                                 <div class="editing-interest">
                                     <div class="notification-box">
                                         <ul>
-                                            @foreach ($notifications['notifications'] as $notification)
+                                            @foreach ($notifications as $notification)
                                             <li>
                                                 <figure><img src="{{ asset('images/resources/friend-avatar.jpg') }}" alt=""></figure>
                                                 <div class="notifi-meta">
@@ -22,7 +22,7 @@
                                             @endforeach
                                         </ul>
                                     </div>
-                                    {{ $notifications['notifications']->links() }}
+                                    {{ $notifications->links() }}
                                     {{-- <div class="sp sp-bars"></div> --}}
                                 </div>
                             </div>

@@ -4,8 +4,8 @@ namespace Modules\UserModule\Http\Livewire\Notification;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use Modules\UserModule\Entities\Notification;
-use Modules\UserModule\Enum\NotificationTypeEnum;
+use Modules\NotificationModule\Entities\Notification;
+use Modules\NotificationModule\Enums\NotificationTypeEnum;
 use Modules\UserModule\Repositories\UserRepository;
 
 

@@ -6,6 +6,8 @@ use App\Traits\ModalHelper;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Modules\NotificationModule\Enums\NotificationTemplateKeysEnums;
+use Modules\UserModule\Notifications\AnnouncementNotification;
 use Modules\UserModule\Services\AnnouncementService;
 
 class UserAnnouncement extends Component
@@ -41,7 +43,14 @@ class UserAnnouncement extends Component
                                    ->setDetails   ($this->details)
                                    ->setFile      ($this->file)
                                    ->createAnnouncement();
-
+        $this->resetInputFields();
+        $notification = new AnnouncementNotification();
+        $notification
+        ->setTemplate(NotificationTemplateKeysEnums::CREATE_ANNOUNCEMENT)
+        ->setUser($this->user)
+        ->setOpponent(Auth::user())
+        ->handle();
+        
         $this->modalClose('.add-announcement-popup', 'success', "Your Announcemen Created Successfully", "Announcemen Create");
     }
 

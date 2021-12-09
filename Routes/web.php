@@ -56,9 +56,7 @@ Route::middleware(['auth'])->group(function () {
     //     Route::get('social-media-accounts/{name}', [UserController::class , 'getUserSocialMediaAccounts'])->name('user.social.media.accounts');
     // });
 
-    Route::prefix('notifications')->group(function() {
-        Route::get('/', [NotificationController::class , 'getUserNotification'])->name('user.all.notifications');
-    });
+    
 
 
 

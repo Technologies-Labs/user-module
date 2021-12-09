@@ -25,12 +25,4 @@ class OfferTransformer  extends TransformerAbstract
         ];
     }
 
-
-    // public function transformAllOffer()
-    // {
-    //     return [
-    //         'offers'  => Offer::where('type','admin')->where('active','1')->paginate(3),
-    //     ];
-    // }
-
 }
