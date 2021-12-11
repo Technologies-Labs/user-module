@@ -1,11 +1,12 @@
 <div class="main-wraper">
     <style>
-        .main-wraper, aside .widget{
+        .main-wraper,
+        aside .widget {
             z-index: auto !important;
         }
     </style>
     <h5 class="main-title">Statistics
-        @if ($isCurrantUser)
+        @if ($isCurrantUser && Auth::user()->can("statistics-create"))
         <div class="more">
             <div class="more-post-optns">
                 <i class="">
@@ -25,7 +26,7 @@
         </div>
         @endif
     </h5>
-
+    @can('statistics-list')
     <div class="info-block-list">
         <div class="uk-overflow-auto">
             <table class="uk-table uk-table-small uk-table-divider">
@@ -44,7 +45,9 @@
                         <td>{{$statistic->name}}</td>
                         <td>{{$statistic->count}}</td>
                         @if ($isCurrantUser)
-                        <td><i class="" wire:click="deleteCompanyStatistic({{$statistic->id}})"  style="cursor: pointer">
+                        <td>
+                            @can('statistics-delete')
+                            <i class="" wire:click="deleteCompanyStatistic({{$statistic->id}})" style="cursor: pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-trash-2">
@@ -56,8 +59,13 @@
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg></i>
 
+                            @endcan
+
+                            @can('statistics-edit')
                             <i wire:click="editUserStatistic({{$statistic->id}})"
-                                class="statistic-opearition icofont-pen-alt-1"  style="cursor: pointer"></i>
+                                class="statistic-opearition icofont-pen-alt-1" style="cursor: pointer"></i>
+                            @endcan
+
                         </td>
                         @endif
 
@@ -73,10 +81,13 @@
             </table>
         </div>
     </div>
+    @endcan
 
+    @if (Auth::user()->can("statistics-create") || Auth::user()->can("statistics-edit"))
     <div class="statistic-opearition-popup" wire:ignore.self>
         <div class="popup">
-            <span :wire:click="forceClose('.statistic-opearition-popup')" class="popup-closed"><i class="icofont-close"></i></span>
+            <span :wire:click="forceClose('.statistic-opearition-popup')" class="popup-closed"><i
+                    class="icofont-close"></i></span>
             <div class="popup-meta">
                 <div class="popup-head">
                     <h5><i>
@@ -104,4 +115,6 @@
             </div>
         </div>
     </div>
+    @endif
+
 </div>

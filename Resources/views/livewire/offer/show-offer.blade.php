@@ -8,6 +8,7 @@
                 <div class="col-lg-12">
                     <div id="page-contents" class="row merged20">
                         <div class="col-lg-12">
+
                             <div class="main-wraper">
                                 <div class="main-title">Offers</div>
                                 <div class="row">
@@ -52,6 +53,7 @@
 
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
 

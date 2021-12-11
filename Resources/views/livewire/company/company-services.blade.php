@@ -1,11 +1,12 @@
 <div class="main-wraper">
     <style>
-        .main-wraper, aside .widget{
+        .main-wraper,
+        aside .widget {
             z-index: null;
         }
     </style>
     <h5 class="main-title">Services
-        @if ($isCurrantUser)
+        @if ($isCurrantUser && Auth::user()->can("service-create"))
         <div class="more">
             <div class="more-post-optns">
                 <i class="">
@@ -25,7 +26,7 @@
         </div>
         @endif
     </h5>
-
+    @can('service-list', Model::class)
     <div class="info-block-list">
         <div class="uk-overflow-auto">
             <table class="uk-table uk-table-small uk-table-divider">
@@ -44,7 +45,9 @@
                         <td>{{$service->name}}</td>
                         <td>{{$service->description}}</td>
                         @if ($isCurrantUser)
-                        <td><i class="" wire:click="deleteService({{$service->id}})"  style="cursor: pointer">
+                        <td>
+                            @can('service-delete')
+                            <i class="" wire:click="deleteService({{$service->id}})" style="cursor: pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-trash-2">
@@ -55,9 +58,11 @@
                                     <line x1="10" y1="11" x2="10" y2="17"></line>
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
                                 </svg></i>
-
+                            @endcan
+                            @can('service-edit')
                             <i wire:click="editUserService({{$service->id}})"
-                                class="servies-opearition icofont-pen-alt-1"  style="cursor: pointer"></i>
+                                class="servies-opearition icofont-pen-alt-1" style="cursor: pointer"></i>
+                            @endcan
                         </td>
                         @endif
 
@@ -73,6 +78,9 @@
             </table>
         </div>
     </div>
+    @endcan
+
+    @if (Auth::user()->can("service-create") || Auth::user()->can("service-edit"))
     <div class="servies-opearition-popup" wire:ignore.self>
         <div class="popup">
             <span class="popup-closed"><i class="icofont-close"></i></span>
@@ -89,7 +97,8 @@
                     <form method="post" class="c-form">
                         <input type="text" wire:model.defer="serviceName" placeholder="Enter Service Name..">
                         @error('serviceName')<span class="text-danger">{{ $message }}</span>@enderror
-                        <input type="text" wire:model.defer="serviceDescription" placeholder="Enter Service Description">
+                        <input type="text" wire:model.defer="serviceDescription"
+                            placeholder="Enter Service Description">
                         @error('serviceDescription')<span class="text-danger">{{ $message }}</span>@enderror
                         <button wire:click.prevent="{{$modal['route']}}" type="submit" class="main-btn">
                             <div wire:loading wire:target="{{$modal['route']}}" class="sp sp-circle"></div>
@@ -100,5 +109,7 @@
             </div>
         </div>
     </div>
+    @endif
+
 
 </div>

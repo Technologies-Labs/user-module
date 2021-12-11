@@ -113,8 +113,16 @@
 
 @section('popups')
 @if(!$isCurrantUser)
+
+@can('suggestion-create')
 <livewire:usermodule::suggestion.user-suggestion :user="$user" />
+@endcan
+
+
+@can('announcement-create')
 <livewire:usermodule::announcement.user-announcement :user="$user" />
+@endcan
+
 @endif
 
 

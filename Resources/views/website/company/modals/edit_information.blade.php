@@ -1,3 +1,4 @@
+@if ( Auth::user()->can("address-create") ||  Auth::user()->can("address-edit"))
 <div class="address-op-popup" wire:ignore.self>
     <div class="popup">
         <span class="popup-closed"><i class="icofont-close"></i></span>
@@ -25,8 +26,9 @@
         </div>
     </div>
 </div>
+@endif
 
-
+@if (Auth::user()->can("information-edit"))
 <div class="edit-contact-us-popup" wire:ignore.self>
     <div class="popup">
         <span class="popup-closed"><i class="icofont-close"></i></span>
@@ -55,7 +57,9 @@
         </div>
     </div>
 </div>
+@endif
 
+@if (Auth::user()->can("social-media-edit"))
 <div class="edit-social-media-popup" wire:ignore.self>
     <div class="popup">
         <span class="popup-closed"><i class="icofont-close"></i></span>
@@ -85,3 +89,5 @@
         </div>
     </div>
 </div>
+@endif
+

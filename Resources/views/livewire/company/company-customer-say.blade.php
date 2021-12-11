@@ -1,6 +1,6 @@
 <div class="main-wraper">
     <h5 class="main-title">Customer Say
-        @if ($isCurrantUser)
+        @if ($isCurrantUser && Auth::user()->can('customer-say-create'))
         <div class="more">
             <div class="more-post-optns">
                 <i class="">
@@ -21,7 +21,7 @@
         </div>
         @endif
     </h5>
-
+    @can('customer-say-list')
     <div class="info-block-list">
         <div class="uk-overflow-auto">
             <table class="uk-table uk-table-small uk-table-divider">
@@ -47,7 +47,9 @@
 
                         </td>
                         @if ($isCurrantUser)
-                        <td><i class="" wire:click="deleteCustomerSay({{$customerSay->id}})" style="cursor: pointer">
+                        <td>
+                            @can('customer-say-delete')
+                            <i class="" wire:click="deleteCustomerSay({{$customerSay->id}})" style="cursor: pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="feather feather-trash-2">
@@ -57,10 +59,15 @@
                                     </path>
                                     <line x1="10" y1="11" x2="10" y2="17"></line>
                                     <line x1="14" y1="11" x2="14" y2="17"></line>
-                                </svg></i>
+                                </svg>
+                            </i>
+                            @endcan
 
+                            @can('customer-say-edit')
                             <i wire:click="editUserCustomerSay({{$customerSay->id}})"
                                 class="customer-say-opearition icofont-pen-alt-1" style="cursor: pointer"></i>
+                            @endcan
+
                         </td>
                         @endif
 
@@ -76,6 +83,9 @@
             </table>
         </div>
     </div>
+    @endcan
+
+    @if (Auth::user()->can('customer-say-create') || Auth::user()->can('customer-say-edit'))
     <div class="customer-say-opearition-popup" wire:ignore.self>
         <div class="popup">
             <span class="popup-closed"><i class="icofont-close"></i></span>
@@ -98,7 +108,7 @@
                         @error('say')<span class="text-danger">{{ $message }}</span>@enderror
 
                         @if($modal['name'] == "Update")
-                            <img src="{{ asset('storage/'.$image)}}" class="w-50 p-4">
+                        <img src="{{ asset('storage/'.$image)}}" class="w-50 p-4">
                         @endif
 
                         <div class="uploadimage">
@@ -118,4 +128,6 @@
             </div>
         </div>
     </div>
+    @endif
+
 </div>

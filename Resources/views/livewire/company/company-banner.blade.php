@@ -1,6 +1,6 @@
 <div class="main-wraper">
     <h5 class="main-title">Banner
-        @if ($isCurrantUser)
+        @if ($isCurrantUser && Auth::user()->can("banner-edit"))
         <div class="more">
             <div class="more-post-optns">
                 <i class="">
@@ -21,6 +21,7 @@
         </div>
         @endif
     </h5>
+    @can('banner-list')
     <div class="info-block-list">
         <div class="info-block">
             <h6>Title</h6>
@@ -30,10 +31,11 @@
             <h6>Description</h6>
             <p>{{$description}}</p>
         </div>
-
     </div>
+    @endcan
 
 
+    @can('banner-edit')
     <div class="company-banner-popup" wire:ignore.self>
         <div class="popup">
             <span class="popup-closed"><i class="icofont-close"></i></span>
@@ -63,4 +65,6 @@
             </div>
         </div>
     </div>
+    @endcan
+
 </div>

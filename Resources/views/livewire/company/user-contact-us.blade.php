@@ -2,7 +2,7 @@
     @include('components.loading')
     <div class="main-wraper">
         <h5 class="main-title">Address
-            @if ($isCurrantUser)
+            @if ($isCurrantUser && Auth::user()->can("address-create"))
             <div class="more">
                 <div class="more-post-optns">
                     <i class="">
@@ -22,7 +22,7 @@
             </div>
             @endif
         </h5>
-
+        @can('address-list')
         <div class="info-block-list">
             <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-small uk-table-divider">
@@ -66,11 +66,13 @@
                 </table>
             </div>
         </div>
+        @endcan
+
     </div>
 
     <div class="main-wraper">
         <h4 class="main-title">Information
-            @if ($isCurrantUser)
+            @if ($isCurrantUser && Auth::user()->can("information-edit"))
             <div class="more">
                 <div class="more-post-optns">
                     <i class="">
@@ -91,8 +93,9 @@
             @endif
         </h4>
         <div class="uni-info">
+            @can('information-list')
             <ul>
-                
+
                 <li>
                     <span>Website</span>
                     <p><a href="{{$website}}"> {{$contact->website ?? 'Not Available'}}</a></p>
@@ -106,12 +109,14 @@
                     <p>{{$contact->email ?? 'Not Available'}}</p>
                 </li>
             </ul>
+            @endcan
+
         </div>
     </div>
 
     <div class="main-wraper">
         <h4 class="main-title">Socials
-            @if ($isCurrantUser)
+            @if ($isCurrantUser && Auth::user()->can("social-media-edit"))
             <div class="more">
                 <div class="more-post-optns">
                     <i class="">
@@ -132,6 +137,8 @@
             @endif
         </h4>
         <ul class="socials">
+            @can('social-media-list')
+
 
             @if ($facebook)
             <li class="facebook">
@@ -156,10 +163,12 @@
                 <i class="icofont-whatsapp"></i><a href="#" title="">{{$whatsApp}}</a>
             </li>
             @endif
-
+            @endcan
 
         </ul>
     </div>
 
     @include('usermodule::website.company.modals.edit_information')
+
+
 </div>
