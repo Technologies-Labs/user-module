@@ -16,7 +16,7 @@ class OfferRepository
         return new Collection($offers, new OfferTransformer());
     }
 
-    
+
     public function getAllUserOffer(User $user,$paginate = 10)
     {
         $offers = $user->offers()->paginate($paginate);

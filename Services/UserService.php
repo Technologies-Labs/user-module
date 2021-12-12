@@ -105,6 +105,9 @@ class UserService{
      */
     public function setImage($image)
     {
+        if(!$image){
+            return $this;
+        }
         if (is_string($image)) {
             $this->image = $image;
             return $this;
@@ -118,6 +121,9 @@ class UserService{
      */
     public function setLogo($logo)
     {
+        if(!$logo){
+            return $this;
+        }
         if (is_string($logo)) {
             $this->logo = $logo;
             return $this;

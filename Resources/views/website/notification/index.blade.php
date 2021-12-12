@@ -12,15 +12,10 @@
                         </div>
                         <div class="col-lg-4">
                             <aside class="sidebar static right">
-                                <div class="widget">
-                                    <h4 class="widget-title">Ask Research Question?</h4>
-                                    <div class="ask-question">
-                                        <i class="icofont-question-circle"></i>
-                                        <h6>Ask questions in Q&A to get help from experts in your field.</h6>
-                                        <a class="ask-qst" href="#" title="">Ask a question</a>
-                                    </div>
-                                </div>
-                                
+                                <livewire:usermodule::suggestion.site-suggestion :template="'widget'" />
+
+                                @livewire('advertisementmodule::position-advertisements', ['position' => Modules\AdvertisementModule\Enum\AdvertisementPositionEnum::SIDEBAR])
+
                             </aside>
                         </div>
                     </div>

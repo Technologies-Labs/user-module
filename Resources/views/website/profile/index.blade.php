@@ -20,21 +20,9 @@
                     <div id="page-contents" class="row merged20">
                         <div class="col-lg-3">
                             <aside class="sidebar static right">
-                                <div class="widget  stick-widget">
-                                    <h4 class="widget-title">Complete Your Profile</h4>
-                                    <span>Your Profile is missing followings!</span>
-                                    <div data-progress="tip" class="progress__outer" data-value="0.67">
-                                        <div class="progress__inner">82%</div>
-                                    </div>
-                                    <ul class="prof-complete">
-                                        <li><i class="icofont-plus-square"></i> <a href="#" title="">Upload Your
-                                                Picture</a><em>10%</em></li>
-                                        <li><i class="icofont-plus-square"></i> <a href="#" title="">Your
-                                                University?</a><em>20%</em></li>
-                                        <li><i class="icofont-plus-square"></i> <a href="#" title="">Add Payment
-                                                Method</a><em>20%</em></li>
-                                    </ul>
-                                </div><!-- complete profile widget -->
+                                @livewire('usermodule::user.complete-profile', ['user' => $user])
+
+                                @livewire('advertisementmodule::position-advertisements', ['position' => Modules\AdvertisementModule\Enum\AdvertisementPositionEnum::SIDEBAR])
                             </aside>
                         </div>
 
@@ -79,28 +67,11 @@
 
                             </div>
                         </div>
+
                         <div class="col-lg-3">
                             <aside class="sidebar static right">
-                                <div class="widget stick-widget">
-                                    <h4 class="widget-title">Socials</h4>
-                                    <ul class="socials">
-                                        <li class="facebook">
-                                            <i class="icofont-facebook"></i><a href="#" title=""><span>4.5k</span>
-                                                Likes</a>
-                                        </li>
-                                        <li class="twitter">
-                                            <i class="icofont-twitter"></i><a href="#" title=""><span>2.3M</span>
-                                                Followers</a>
-                                        </li>
-                                        <li class="google">
-                                            <i class="icofont-instagram"></i><a href="#" title=""><span>8.2M</span>
-                                                Followers</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
                                 <livewire:usermodule::suggestion.site-suggestion :template="'widget'" />
-
+                                @livewire('advertisementmodule::position-advertisements', ['position' => Modules\AdvertisementModule\Enum\AdvertisementPositionEnum::SIDEBAR])
                             </aside>
                         </div>
                     </div>

@@ -68,9 +68,12 @@
                 </ul>
             </div>
             @include('components.loading')
+
         </div>
         @endcan
     </div>
+
+    {{-- @livewire('usermodule::user.suggested-users',['template' =>'slider']) --}}
 
 
 </div>

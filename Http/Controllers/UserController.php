@@ -16,6 +16,8 @@ use Spatie\Permission\Models\Role;
 use Modules\UserModule\Http\Requests\UserRequest;
 use Modules\UserModule\Services\UserService;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Modules\AdvertisementModule\Enum\AdvertisementPositionEnum;
+use Modules\AdvertisementModule\Repositories\AdvertisementRepository;
 use Modules\CategoryModule\Entities\Category;
 use Modules\ProductModule\Entities\ProductStatus;
 use Modules\ProductModule\Repositories\ProductRepository;
@@ -27,10 +29,11 @@ class UserController extends Controller
     private $userRepository;
     private $productRepository;
 
+
     public function __construct()
     {
-         $this->userRepository      = new UserRepository();
-         $this->productRepository   = new ProductRepository();
+         $this->userRepository              = new UserRepository();
+         $this->productRepository           = new ProductRepository();
     }
 
     /**
