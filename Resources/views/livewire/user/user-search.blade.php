@@ -1,10 +1,10 @@
 <div class="searches" >
     <form method="post">
-        <input wire:model.debounce.900ms='user' type="text" placeholder="Search...">
+        <input wire:model.debounce.900ms='user' type="text" placeholder="بحث ..">
         <button type="#"><i class="icofont-search"></i></button>
         <span class="cancel-search"><i class="icofont-close"></i></span>
         <div class="recent-search" wire:ignore.self>
-            <h4 class="recent-searches">Your's Recent Search</h4>
+            <h4 class="recent-searches">اخر ماتم البحث عنه</h4>
             <ul class="so-history">
                 @include('components.loading')
                 @foreach ($users as $user)

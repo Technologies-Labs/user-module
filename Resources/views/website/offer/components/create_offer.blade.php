@@ -1,9 +1,9 @@
 <div class="main-wraper" wire:click="setCreateModal">
-    <span class="new-title">Create New Offer</span>
+    <span class="new-title">إنشاء عرض جديد</span>
     <div class="add-offer">
         <form method="post" wire:click="setCreateModal">
             <i class="icofont-pen-alt-1"></i>
-            <input type="text" placeholder="Create New Offer">
+            <input type="text">
         </form>
     </div>
 </div>

@@ -6,7 +6,7 @@
                     <div id="page-contents" class="row merged20">
                         <div class="col-lg-12">
                             <div class="main-wraper">
-                                <div class="main-title">Offers</div>
+                                <div class="main-title">العروض</div>
                                 <div class="row">
                                     @foreach ($offers['offers'] as $offer)
                                     <div class="col-lg-4 col-md-4 col-sm-6">

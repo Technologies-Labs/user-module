@@ -1,5 +1,5 @@
 <div>
-    <a data-ripple="" title="" href="javascript:void(0)"  wire:click="follow()" class="invite" style="right: 324px;">
+    <a data-ripple="" title="" href="javascript:void(0)"  wire:click="follow()" class="invite" style="left: 324px;">
         @if($isFollower)
             Follow
         @else
@@ -10,7 +10,7 @@
     </a>
 
     <a data-ripple="" title="" href="#" class="add-suggestion">Add Suggestion</a>
-    <a data-ripple="" title="" href="#" class="add-announcement" style="right: 162px;">Add Announcement</a>
+    <a data-ripple="" title="" href="#" class="add-announcement" style="left: 162px;">Add Announcement</a>
     </div>
 
     {{-- <span>{{$followersCount}} followers</span> --}}

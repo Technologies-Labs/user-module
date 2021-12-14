@@ -1,6 +1,6 @@
 <div class="tab-pane fade" id="suggestions" wire:ignore.self>
     <div class="main-wraper">
-        <h3 class="main-title">All Suggestion</h3>
+        <h3 class="main-title">المُقترحات</h3>
         <div class="row merged-10">
             <div class="col-lg-4">
                 <figure class="research-avatar">

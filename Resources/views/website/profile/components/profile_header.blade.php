@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs post-detail-btn">
+<ul class="nav nav-tabs post-detail-btn" style="padding-right: 0">
     <li class="nav-item"><a class="active" href="#timeline" wire:ignore data-toggle="tab">Timeline</a></li>
 
     @if($isCurrantUser)
