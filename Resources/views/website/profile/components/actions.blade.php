@@ -1,6 +1,7 @@
 <div>
     @can('follow-create')
     <a data-ripple="" title="" href="javascript:void(0)"  wire:click="follow()" class="invite" style="right: 324px;">
+        @include('components.loading')
         @if($isFollower)
             Follow
         @else
@@ -14,7 +15,7 @@
     @can('suggestion-create')
     <a data-ripple="" title="" href="#" class="add-suggestion">Add Suggestion</a>
     @endcan
-    
+
     @can('announcement-create')
     <a data-ripple="" title="" href="#" class="add-announcement" style="right: 162px;">Add Announcement</a>
     @endcan

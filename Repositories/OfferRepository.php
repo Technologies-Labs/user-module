@@ -19,12 +19,7 @@ class OfferRepository
 
     public function getAllUserOffer(User $user,$paginate = 10)
     {
-        $offers = $user->offers()->paginate($paginate);
-
-        $resource = new Collection($offers, new OfferTransformer());
-        $resource->setPaginator(new IlluminatePaginatorAdapter($offers));
-        //$offers = $user->offers()->paginate($paginate);
-
-        return $resource;
+        $offers = $user->offers()->paginate($paginate,['*'],null);
+        return new Collection($offers, new OfferTransformer());
     }
 }

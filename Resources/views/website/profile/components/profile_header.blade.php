@@ -21,7 +21,9 @@
 
 
     @if($isCurrantUser)
-    <li class="nav-item"><a class=""  wire:click="$emit('loadGroups')" href="#groups" wire:ignore data-toggle="tab">Groups</a> <span style="background-color: #ea0d0d; color: white" >5</span></li>
+    <li class="nav-item"><a class=""  wire:click="$emit('loadGroups')" href="#groups" wire:ignore data-toggle="tab">Groups</a>
+        {{-- <span style="background-color: #ea0d0d; color: white" >5</span> --}}
+    </li>
     @endif
 
     <li class="nav-item"><a class="" wire:click="$emit('loadOffers')" href="#Offers" wire:ignore data-toggle="tab">Offers</a></li>

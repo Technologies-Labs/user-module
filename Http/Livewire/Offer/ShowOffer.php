@@ -12,11 +12,11 @@ class ShowOffer extends Component
 {
     //public  $offers;
     private $offerRepository;
-    public  $perPage = 10;
+    public  $perPage = 20;
 
     public function loadMore()
     {
-        $this->perPage += 10;
+        $this->perPage += 20;
     }
 
     public function boot()

@@ -40,11 +40,11 @@ class UserOffer extends Component
 
     protected $listeners = ['loadOffers'];
 
-    public  $perPage = 1;
+    public  $perPage = 10;
 
     public function loadMore()
     {
-        $this->perPage += 1;
+        $this->perPage += 10;
     }
 
     public function getOffersProperty()
@@ -121,7 +121,7 @@ class UserOffer extends Component
         ->setOffer($offer)
         ->setCreateOfferMessage()
         ->handle();
-        
+
         $this->resetInputFields();
         $this->modalClose('.add-offer-popup', 'success', 'Your Offer Created Successfully', 'Your Offer Created Successfully');
     }

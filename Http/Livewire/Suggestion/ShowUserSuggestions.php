@@ -17,7 +17,7 @@ class ShowUserSuggestions extends Component
 
     protected $listeners = ['loadSuggestions'];
 
-    public  $perPage = 10;
+    public  $perPage = 20;
 
     public function getSuggestionsProperty()
     {

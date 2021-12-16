@@ -21,6 +21,7 @@
                         <div wire:loading wire:target="{{$modal['route']}}" class="sp sp-circle"></div>
                         {{$modal['name']}}
                     </button>
+                    
                 </form>
             </div>
         </div>

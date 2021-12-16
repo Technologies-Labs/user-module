@@ -4,10 +4,13 @@ namespace Modules\UserModule\Entities;
 
 use App\Models\User;
 use App\Scopes\OrderingScope;
+use Database\Factories\SuggestionsFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Suggestion extends Model
 {
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -25,4 +28,10 @@ class Suggestion extends Model
     {
         static::addGlobalScope(new OrderingScope);
     }
+    
+    protected static function newFactory()
+    {
+        return SuggestionsFactory::new();
+    }
+
 }

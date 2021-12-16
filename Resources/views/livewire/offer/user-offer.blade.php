@@ -8,7 +8,7 @@
         @include('usermodule::website.offer.modals.offer-modal')
     @endif
 
-    @include('components.loading')
+
     @can('offer-list')
         @foreach ($offers as $offer)
             <span></span>
@@ -103,5 +103,6 @@
         @if($offers && $offers->hasMorePages())
             @include('components.loading')
         @endif
+        {{-- @include('components.loading') --}}
     @endcan
 </div>
