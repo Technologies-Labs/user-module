@@ -3,7 +3,7 @@
 namespace Modules\UserModule\Http\Livewire\User;
 
 use Livewire\Component;
-use Modules\MarketPlace\Enum\MarketplaceEnum;
+use Modules\Marketplace\Enum\MarketplaceEnum;
 
 class SuggestedUsers extends Component
 {
