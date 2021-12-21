@@ -6,7 +6,8 @@ use App\Traits\UploadTrait;
 
 use function PHPUnit\Framework\isNull;
 
-class CompanyCustomerSayService{
+class CompanyCustomerSayService
+{
 
     use UploadTrait;
 
