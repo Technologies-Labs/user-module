@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div id="page-contents" class="row merged20">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3">
                             <aside class="sidebar static right">
                                 @livewire('user::user.complete-profile', ['user' => $user])
 
@@ -26,7 +26,7 @@
                             </aside>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="tab-content">
 
                                 {{-- timeline --}}
@@ -68,7 +68,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 col-md-3">
                             <aside class="sidebar static right">
                                 <livewire:user::suggestion.site-suggestion :template="'widget'" />
                                 @livewire('advertisement::position-advertisements', ['position' => Modules\Advertisement\Enum\AdvertisementPositionEnum::SIDEBAR])

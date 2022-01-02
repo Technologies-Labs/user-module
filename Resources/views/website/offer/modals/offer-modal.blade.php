@@ -19,7 +19,7 @@
                 <form wire:submit.prevent="{{$modal['route']}}" enctype="multipart/form-data" class="c-form">
 
                     <textarea wire:model.defer="details" rows="5" type="textarea" required="required"
-                        placeholder="Offer Details"></textarea>
+                        placeholder="تفاصيل العرض"></textarea>
                     @error('details') <span class="error">{{ $message }}</span> @enderror
 
                     {{-- @if($modal['name'] =="update" && $offer->image)
@@ -29,7 +29,7 @@
                     <div class="uploadimage">
                         <i class="icofont-eye-alt-alt"></i>
                         <label class="fileContainer">
-                            <input wire:model.defer="image" type="file">Upload Photo
+                            <input wire:model.defer="image" type="file">تحميل صورة العرض
                             @error('image') <span class="error">{{ $message }}</span> @enderror
                             <div wire:loading wire:target="image" class="sp sp-circle">
                                 {{-- <livewire:user::offer.user-offer :user="$user" :isCurrantUser="$isCurrantUser" /> --}}
@@ -37,7 +37,7 @@
                         </label>
 
                     </div>
-                    <button type="submit" class="main-btn">Save</button>
+                    <button type="submit" class="main-btn">حفظ</button>
                 </form>
             </div>
         </div>
