@@ -14,27 +14,27 @@
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                                 <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                            </svg></i> Add Site Suggestion</h5>
+                            </svg></i> إضافة مقترح للموقع</h5>
                 </div>
                 <div class="post-new">
 
 
                     <form class="c-form" wire:submit.prevent="addSiteSuggestion" enctype="multipart/form-data" id="form-upload">
 
-                        <textarea wire:model.defer="details" placeholder="{{__('Write Your Suggestion')}}"
+                        <textarea wire:model.defer="details" placeholder="اكتب مقترحك"
                             required="required"></textarea>
                         @error('details') <span class="error">{{ $message }}</span> @enderror
 
                         <div class="uploadimage">
                             <i class="icofont-eye-alt-alt"></i>
                             <label class="fileContainer">
-                                <input type="file" wire:model="file">Upload File
+                                <input type="file" wire:model="file">تحميل ملف
                                 @error('file') <span class="error">{{ $message }}</span> @enderror
                                 <div wire:loading wire:target="file" class="sp sp-circle"></div>
                             </label>
                         </div>
 
-                        <button type="submit" class="main-btn">{{__('Send Suggestion')}}</button>
+                        <button type="submit" class="main-btn">إرسال المقترح</button>
                     </form>
                 </div>
             </div>

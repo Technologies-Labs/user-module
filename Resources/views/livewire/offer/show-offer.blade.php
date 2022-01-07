@@ -3,7 +3,7 @@
     use Modules\User\Enum\OfferEnum;
     use Carbon\Carbon;
     @endphp
-    <div class="main-title">Offers</div>
+    <div class="main-title">عروض</div>
     <div class="row">
         @foreach ($offers as $offer)
         <div class="col-lg-4 col-md-4 col-sm-6">

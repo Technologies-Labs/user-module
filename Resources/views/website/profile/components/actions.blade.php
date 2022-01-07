@@ -3,9 +3,9 @@
     <a data-ripple="" title="" href="javascript:void(0)"  wire:click="follow()" class="invite" style="left: 238px;">
         @include('components.loading')
         @if($isFollower)
-            متابعة
+            مُتابعة
         @else
-            إلغاء المتابعة
+            إلغاء المُتابعة
         @endif
 
         <div wire:loading wire:target="isFollower" class="sp sp-circle"></div>
@@ -13,11 +13,11 @@
     @endcan
 
     @can('suggestion-create')
-    <a data-ripple="" title="" href="#" class="add-suggestion">اضافة اقتراح</a>
+    <a data-ripple="" title="" href="#" class="add-suggestion">اضافة مُقترح</a>
     @endcan
 
     @can('announcement-create')
-    <a data-ripple="" title="" href="#" class="add-announcement" style="left: 135px;">إضافة بلاغ</a>
+    <a data-ripple="" title="" href="#" class="add-announcement" style="left: 135px;">إضافة شكوى</a>
     @endcan
 
     </div>

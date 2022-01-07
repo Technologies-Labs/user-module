@@ -32,7 +32,7 @@
     <li class="nav-item"><a class="" wire:click="$emit('loadSuggestions')" href="#suggestions" wire:ignore data-toggle="tab">المقترحات</a></li>
     @endif
 
-    <li class="nav-item"><a class="" wire:click="$emit('loadUserContactUs')" href="#contact" wire:ignore data-toggle="tab">Contact Us</a></li>
+    <li class="nav-item"><a class="" wire:click="$emit('loadUserContactUs')" href="#contact" wire:ignore data-toggle="tab">تواصل معنا</a></li>
 
     <li class="nav-item"><a class="" href="@if($isCurrantUser)#company @else{{ route('user.company', ['user' => $user]) }}@endif" wire:ignore @if ($isCurrantUser) data-toggle="tab" @endif>About Company</a></li>
 

@@ -13,7 +13,7 @@
                     </svg></i>
                 <ul>
                     <li class="company-banner">
-                        <a><i class="icofont-pen-alt-1"></i>Update</a>
+                        <a><i class="icofont-pen-alt-1"></i>تحديث</a>
 
                     </li>
                 </ul>
@@ -24,11 +24,11 @@
     @can('banner-list')
     <div class="info-block-list">
         <div class="info-block">
-            <h6>Title</h6>
+            <h6>العنوان</h6>
             <p>{{$title}}</p>
         </div>
         <div class="info-block">
-            <h6>Description</h6>
+            <h6>الوصف</h6>
             <p>{{$description}}</p>
         </div>
     </div>
@@ -50,10 +50,10 @@
                 </div>
                 <div class="send-message">
                     <form method="post" class="c-form">
-                        <input type="text" wire:model.defer="title" placeholder="Enter Title ..">
+                        <input type="text" wire:model.defer="title" placeholder="ادخل العنوان">
                         @error('title')<span class="text-danger">{{ $message }}</span>@enderror
 
-                        <input type="text" wire:model.defer="description" placeholder="Enter Description">
+                        <input type="text" wire:model.defer="description" placeholder="ادخل الوصف">
                         @error('description')<span class="text-danger">{{ $message }}</span>@enderror
 
                         <button wire:click.prevent="{{$modal['route']}}" type="submit" class="main-btn">

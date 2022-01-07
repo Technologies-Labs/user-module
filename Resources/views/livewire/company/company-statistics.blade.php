@@ -5,7 +5,7 @@
             z-index: auto !important;
         }
     </style>
-    <h5 class="main-title">Statistics
+    <h5 class="main-title">الإحصائيات
         @if ($isCurrantUser && Auth::user()->can("statistics-create"))
         <div class="more">
             <div class="more-post-optns">
@@ -19,7 +19,7 @@
                     </svg></i>
                 <ul>
                     <li wire:click='setStatisticCreateModal()' class="statistic-opearition">
-                        <a><i class="icofont-pen-alt-1"></i>Create</a>
+                        <a><i class="icofont-pen-alt-1"></i>إضافة</a>
                     </li>
                 </ul>
             </div>

@@ -5,7 +5,7 @@
             z-index: null;
         }
     </style>
-    <h5 class="main-title">Services
+    <h5 class="main-title">الخدمات
         @if ($isCurrantUser && Auth::user()->can("service-create"))
         <div class="more">
             <div class="more-post-optns">
@@ -19,7 +19,7 @@
                     </svg></i>
                 <ul>
                     <li wire:click='setServiceCreateModal()' class="servies-opearition">
-                        <a><i class="icofont-pen-alt-1"></i>Create</a>
+                        <a><i class="icofont-pen-alt-1"></i>إضافة خدمه</a>
                     </li>
                 </ul>
             </div>
@@ -32,8 +32,8 @@
             <table class="uk-table uk-table-small uk-table-divider">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Description</th>
+                        <th>اسم الخدمة</th>
+                        <th>تفاصيل الخدمة</th>
                         @if ($isCurrantUser)
                         <th>Action</th>
                         @endif
@@ -95,10 +95,10 @@
                 </div>
                 <div class="send-message">
                     <form method="post" class="c-form">
-                        <input type="text" wire:model.defer="serviceName" placeholder="Enter Service Name..">
+                        <input type="text" wire:model.defer="serviceName" placeholder="اسم الخدمة">
                         @error('serviceName')<span class="text-danger">{{ $message }}</span>@enderror
                         <input type="text" wire:model.defer="serviceDescription"
-                            placeholder="Enter Service Description">
+                            placeholder="تفاصيل الخدمة">
                         @error('serviceDescription')<span class="text-danger">{{ $message }}</span>@enderror
                         <button wire:click.prevent="{{$modal['route']}}" type="submit" class="main-btn">
                             <div wire:loading wire:target="{{$modal['route']}}" class="sp sp-circle"></div>
