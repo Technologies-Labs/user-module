@@ -3,6 +3,7 @@
 namespace Modules\User\Repositories;
 
 use App\Models\User;
+use App\Scopes\DateFilterScope;
 use League\Fractal\Resource\Collection;
 use Modules\User\Entities\Offer;
 use Modules\User\Transformers\OfferTransformer;
@@ -19,7 +20,8 @@ class OfferRepository
 
     public function getAllUserOffer(User $user,$paginate = 10)
     {
-        $offers = $user->offers()->paginate($paginate,['*'],null);
+        $offers =$user->offers()->withoutGlobalScopes([DateFilterScope::class])->paginate($paginate,['*'],null);
+        // $offers = $user->offers()->paginate($paginate,['*'],null);
         return new Collection($offers, new OfferTransformer());
     }
 }
