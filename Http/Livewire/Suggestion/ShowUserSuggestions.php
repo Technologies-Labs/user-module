@@ -13,22 +13,23 @@ class ShowUserSuggestions extends Component
     private $suggestionRepository;
     //public  $suggestions;
 
-    public $readyToLoad = false;
+    // public $readyToLoad = false;
 
-    protected $listeners = ['loadSuggestions'];
+    // protected $listeners = ['loadSuggestions'];
 
     public  $perPage = 20;
 
     public function getSuggestionsProperty()
     {
-        return ($this->readyToLoad) ? $this->suggestionRepository->getAllSuggestion($this->user , $this->perPage) : [];
+        return $this->suggestionRepository->getAllSuggestion($this->user , $this->perPage);
     }
 
 
-    public function loadSuggestions()
-    {
-        $this->readyToLoad = true ;
-    }
+    // public function loadSuggestions()
+    // {
+    //     $this->readyToLoad = true ;
+    // }
+
     public function loadMore()
     {
         $this->perPage += 10;

@@ -26,10 +26,10 @@
     </li>
     @endif
 
-    <li class="nav-item"><a class="" wire:click="$emit('loadOffers')" href="#Offers" wire:ignore data-toggle="tab">العروض</a></li>
+    <li class="nav-item"><a class=""  href="#Offers" wire:ignore data-toggle="tab">العروض</a></li>
 
     @if($isCurrantUser)
-    <li class="nav-item"><a class="" wire:click="$emit('loadSuggestions')" href="#suggestions" wire:ignore data-toggle="tab">المقترحات</a></li>
+    <li class="nav-item"><a class=""  href="#suggestions" wire:ignore data-toggle="tab">المقترحات</a></li>
     @endif
 
     <li class="nav-item"><a class="" wire:click="$emit('loadUserContactUs')" href="#contact" wire:ignore data-toggle="tab">Contact Us</a></li>

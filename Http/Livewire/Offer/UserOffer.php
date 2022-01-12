@@ -35,10 +35,10 @@ class UserOffer extends Component
     public  $isCurrantUser;
 
     //public  $offers;
-    public $readyToLoad = false;
+    //public $readyToLoad = false;
     public  $modal;
 
-    protected $listeners = ['loadOffers'];
+    // protected $listeners = ['loadOffers'];
 
     public  $perPage = 10;
 
@@ -49,13 +49,13 @@ class UserOffer extends Component
 
     public function getOffersProperty()
     {
-        return ($this->readyToLoad) ? $this->offerRepository->getAllUserOffer($this->user, $this->perPage)->getData() : [];
+        return $this->offerRepository->getAllUserOffer($this->user, $this->perPage)->getData();
     }
 
-    public function loadOffers()
-    {
-        $this->readyToLoad = true;
-    }
+    // public function loadOffers()
+    // {
+    //     $this->readyToLoad = true;
+    // }
 
     public function boot()
     {
