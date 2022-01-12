@@ -1,7 +1,7 @@
 <div class="tab-pane fade" id="suggestions" wire:ignore.self>
 
     <div class="main-wraper">
-        <h3 class="main-title">All Suggestion</h3>
+        <h3 class="main-title">المقترحات</h3>
         @can('suggestion-list')
         <div class="editing-interest">
             <div class="notification-box">

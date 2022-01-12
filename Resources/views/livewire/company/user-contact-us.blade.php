@@ -71,7 +71,7 @@
     </div>
 
     <div class="main-wraper">
-        <h4 class="main-title">Information
+        <h4 class="main-title">معلومات التواصل
             @if ($isCurrantUser && Auth::user()->can("information-edit"))
             <div class="more">
                 <div class="more-post-optns">
@@ -85,7 +85,7 @@
                         </svg></i>
                     <ul>
                         <li class="edit-contact-us">
-                            <a><i class="icofont-pen-alt-1"></i>Edit</a>
+                            <a><i class="icofont-pen-alt-1"></i>تعديل</a>
                         </li>
                     </ul>
                 </div>
@@ -97,15 +97,15 @@
             <ul>
 
                 <li>
-                    <span>Website</span>
+                    <span>الموقع</span>
                     <p><a href="{{$website}}"> {{$contact->website ?? 'Not Available'}}</a></p>
                 </li>
                 <li>
-                    <span>Phone</span>
+                    <span>رقم الهاتف</span>
                     <p>{{$contact->phone ?? 'Not Available'}}</p>
                 </li>
                 <li>
-                    <span>Email</span>
+                    <span>البريد الإلكتروني</span>
                     <p>{{$contact->email ?? 'Not Available'}}</p>
                 </li>
             </ul>
@@ -115,7 +115,7 @@
     </div>
 
     <div class="main-wraper">
-        <h4 class="main-title">Socials
+        <h4 class="main-title">مواقع التواصل الاجتماعية
             @if ($isCurrantUser && Auth::user()->can("social-media-edit"))
             <div class="more">
                 <div class="more-post-optns">
@@ -129,7 +129,7 @@
                         </svg></i>
                     <ul>
                         <li class="edit-social-media">
-                            <a><i class="icofont-pen-alt-1"></i>Edit</a>
+                            <a><i class="icofont-pen-alt-1"></i>تعديل</a>
                         </li>
                     </ul>
                 </div>

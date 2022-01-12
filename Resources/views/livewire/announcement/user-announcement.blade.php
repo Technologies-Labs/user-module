@@ -10,24 +10,24 @@
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                             <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                        </svg></i> Add  Announcement</h5>
+                        </svg></i> إضافة شكوى</h5>
             </div>
             <div class="post-new">
                 <form wire:submit.prevent="addAnnouncement()" enctype="multipart/form-data" class="c-form">
-                    <textarea  wire:model.defer="details" placeholder="Write Question"></textarea>
+                    <textarea  wire:model.defer="details" placeholder="اكتب الشكوى"></textarea>
                     @error('details') <span class="error">{{ $message }}</span> @enderror
 
                     <div class="uploadimage">
                         <i class="icofont-eye-alt-alt"></i>
                         <label class="fileContainer">
-                            <input wire:model.defer="file" type="file">Upload File
+                            <input wire:model.defer="file" type="file">تحميل ملف
                             @error('file') <span class="error">{{ $message }}</span> @enderror
                             <div wire:loading wire:target="file" class="sp sp-circle"></div>
                         </label>
 
                     </div>
 
-                    <button type="submit" class="main-btn">Announcement</button>
+                    <button type="submit" class="main-btn">إرسال</button>
                 </form>
             </div>
         </div>

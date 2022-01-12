@@ -1,5 +1,5 @@
 <div class="main-wraper">
-    <h5 class="main-title">Customer Say
+    <h5 class="main-title">ماقال عنا العملاء
         @if ($isCurrantUser && Auth::user()->can('customer-say-create'))
         <div class="more">
             <div class="more-post-optns">
@@ -13,7 +13,7 @@
                     </svg></i>
                 <ul>
                     <li wire:click='setCustomerSayCreateModal()' class="customer-say-opearition">
-                        <a><i class="icofont-pen-alt-1"></i>Create</a>
+                        <a><i class="icofont-pen-alt-1"></i>إضافة</a>
 
                     </li>
                 </ul>
@@ -27,9 +27,9 @@
             <table class="uk-table uk-table-small uk-table-divider">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>اسم العميل</th>
                         <th>Say</th>
-                        <th>Image</th>
+                        <th>الصورة</th>
                         @if ($isCurrantUser)
                         <th>Action</th>
                         @endif
@@ -101,7 +101,7 @@
                 <div class="send-message">
                     <form method="post" class="c-form">
 
-                        <input type="text" wire:model.defer="name" placeholder="Enter Customer Name..">
+                        <input type="text" wire:model.defer="name" placeholder="اسم العميل ">
                         @error('name')<span class="text-danger">{{ $message }}</span>@enderror
 
                         <input type="text" wire:model.defer="say" placeholder="Enter Customer Say">
@@ -114,7 +114,7 @@
                         <div class="uploadimage">
                             <i class="icofont-eye-alt-alt"></i>
                             <label class="fileContainer">
-                                <input wire:model.defer="image" type="file">Upload Photo
+                                <input wire:model.defer="image" type="file">تحميل صورة
                                 <div wire:loading wire:target="image" class="sp sp-circle"></div>
                             </label>
                         </div>

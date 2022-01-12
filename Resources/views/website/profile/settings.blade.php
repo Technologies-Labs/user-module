@@ -8,8 +8,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="post-subject">
-                        <h1>Account Settings</h1>
-                        <p> Choose your accounts options and privacy. </p>
+                        <h1>إعدادت الحساب</h1>
+{{--                        <p> Choose your accounts options and privacy. </p>--}}
                     </div>
                 </div>
             </div>
@@ -24,10 +24,10 @@
                 <div class="col-lg-3 mb-4">
                     <nav class="responsive-tab">
                         <ul class="nav nav-tabs uk-list">
-                            <li class="nav-item"><a class="active" href="#account" wire:ignore data-toggle="tab">Account</a>
+                            <li class="nav-item"><a class="active" href="#account" wire:ignore data-toggle="tab">إعدادت الحساب</a>
                             </li>
-                            <li class="nav-item"><a class="" href="#password" data-toggle="tab" wire:ignore>Password</a></li>
-                            <li class="nav-item"><a class="" href="#close" data-toggle="tab">Close Account</a>
+                            <li class="nav-item"><a class="" href="#password" data-toggle="tab" wire:ignore>ضبط كلمة السر</a></li>
+                            <li class="nav-item"><a class="" href="#close" data-toggle="tab">حذف الحساب</a>
                             </li>
                         </ul>
                     </nav>
